@@ -35,7 +35,7 @@
           Récits de voyage
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('blog.corse-2023') }}">Corse 2023</a>
+          <a class="dropdown-item" href="{{ route('blog.corse2023') }}">Corse 2023</a>
           <a class="dropdown-item" href="">Norvège 2019 (bientôt)</a>
       </li>
       <li class="nav-item">

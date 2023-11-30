@@ -61,6 +61,6 @@ class BlogController extends Controller
     }
 
     public function corse2023(): View{
-        return view('blog.corse-2023');
+        return view('blog.corse2023');
     }
 }

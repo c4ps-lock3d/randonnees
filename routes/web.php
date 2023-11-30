@@ -40,4 +40,4 @@ Route::post('/{post}/edit', [\App\Http\Controllers\BlogController::class,'update
 
 // Pages uniques
 Route::get('/about', [\App\Http\Controllers\BlogController::class, 'about'])->name('blog.about');
-Route::get('/corse-2023', [\App\Http\Controllers\BlogController::class, 'corse2023'])->name('blog.corse-2023');
+Route::get('/corse2023', [\App\Http\Controllers\BlogController::class, 'corse2023'])->name('blog.corse2023');
