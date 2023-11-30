@@ -1,0 +1,23 @@
+body{
+    font-family: 'Dosis';
+    /*background-color: #1d2124;*/
+    /*background-color: #5CB18D;*/
+    background-color: #C1DBB3;
+    color: #193f25;
+    /*overflow-y: scroll;*/
+  }
+
+a{
+    text-decoration:none;
+    color: #1d2124;
+}
+
+a:hover{
+    text-decoration:underline;
+    color: #000000;
+}
+
+h1{
+    margin-top:20px;
+    margin-bottom:40px;
+}
