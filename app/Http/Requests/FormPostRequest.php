@@ -28,9 +28,11 @@ class FormPostRequest extends FormRequest
             //'slug' => ['required', 'min:8', 'regex:/^[0-9a-z\-]+$/', 'unique:posts'],
             'slug' => ['required', 'min:8', 'regex:/^[0-9a-z\-]+$/', Rule::unique('posts')->ignore($this->route()->parameter('post'))],
             'date' => ['required'],
-            'area' => ['required'],
-            'layout' => ['required'],
-            'topography' => ['required'],
+            'cat_area_id' => ['required', 'exists:cat_areas,id'],
+            'cat_layout_id' => ['required', 'exists:cat_layouts,id'],
+            'cat_topography_id' => ['required', 'exists:cat_topographies,id'],
+            'cat_difficulty_id' => ['required', 'exists:cat_difficulties,id'],
+            'cat_dogfriendly_id' => ['required', 'exists:cat_dogfriendlies,id'],
             'distance' => ['required'],
             'eleAsc' => ['numeric', 'min_digits:1', 'max_digits:4'],
             'eleDsc' => ['numeric', 'min_digits:1', 'max_digits:4'],
@@ -38,10 +40,8 @@ class FormPostRequest extends FormRequest
             'eleStart' => ['numeric', 'min_digits:1', 'max_digits:4'],
             'eleMax' => ['numeric', 'min_digits:1', 'max_digits:4'],
             'duration' => ['required'],
-            'difficulty' => ['required'],
             'google' => ['required'],
             'hut' => ['nullable'],
-            'dogFriendly' => ['required'],
             'comments' => ['nullable']
         ];
     }

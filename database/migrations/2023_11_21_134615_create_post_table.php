@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->date('date');
-            $table->string('area');
-            $table->string('layout');
-            $table->string('topography');
             $table->float('distance');
             $table->integer('eleAsc');
             $table->integer('eleDsc');
@@ -26,10 +23,8 @@ return new class extends Migration
             $table->integer('eleStart');
             $table->integer('eleMax');
             $table->time('duration');
-            $table->string('difficulty');
             $table->string('google');
             $table->string('hut')->nullable();
-            $table->string('dogFriendly');
             $table->longtext('comments')->nullable();
             $table->timestamps();
         });

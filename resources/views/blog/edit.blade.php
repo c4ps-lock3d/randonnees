@@ -18,43 +18,32 @@
         </div>
         <div class="row pb-2">
         <div class="col form-group">
-            <select name="area" value="{{ old('area', $post->area) }}" class="form-control" id="area">
-            <option>Vaud</option>
-            <option>Valais</option>
-            <option>Fribourg</option>
-            <option>Oberland bernois</option>
-            <option>Crêtes du Jura</option>
-            <option>Grisons</option>
-            <option>Schwytz</option>
-            <option>France</option>
+            <select name="cat_area_id" class="form-control" id="cat_area">
+                @foreach ($cat_areas as $cat_area)
+                    <option @selected(old('cat_area_id', $post->cat_area_id) == $cat_area->id) value="{{ $cat_area->id }}">{{ $cat_area->name }}</option>
+                @endforeach
             </select>
-            @error("area")
+            @error("cat_area_id")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <select name="layout" class="form-control" id="layout">
-            <option>Boucle</option>
-            <option>Aller-retour</option>
-            <option>Aller</option>
+            <select name="cat_layout_id" class="form-control" id="cat_layout">
+                @foreach ($cat_layouts as $cat_layout)
+                    <option @selected(old('cat_layout_id', $post->cat_layout_id) == $cat_layout->id) value="{{ $cat_layout->id }}">{{ $cat_layout->name }}</option>
+                @endforeach
             </select>
-            @error("layout")
+            @error("cat_layout_id")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <select name="topography" class="form-control" id="topography">
-            <option>Sommet montagneux</option>
-            <option>Gorges</option>
-            <option>Col de Montagne</option>
-            <option>Refuge de montagne</option>
-            <option>Lac de montagne</option>
-            <option>Ballade</option>
-            <option>Village de montagne</option>
-            <option>Point de vue</option>
-            <option>Randonnée à plat</option>
+            <select name="cat_topography_id" class="form-control" id="cat_topography">
+                @foreach ($cat_topographies as $cat_topography)
+                    <option @selected(old('cat_topography_id', $post->cat_topography_id) == $cat_topography->id) value="{{ $cat_topography->id }}">{{ $cat_topography->name }}</option>
+                @endforeach
             </select>
-            @error("topography")
+            @error("cat_topography_id")
                 {{ $message }}
             @enderror
         </div>
@@ -111,25 +100,22 @@
             @enderror
         </div>
         <div class="col form-group">
-            <select name="difficulty" class="form-control" id="difficulty">
-            <option>T1</option>
-            <option>T2</option>
-            <option>T2+</option>
-            <option>T3</option>
-            <option>T3+</option>
+            <select name="cat_difficulty_id" class="form-control" id="cat_difficulty">
+                @foreach ($cat_difficulties as $cat_difficulty)
+                    <option @selected(old('cat_difficulty_id', $post->cat_difficulty_id) == $cat_difficulty->id) value="{{ $cat_difficulty->id }}">{{ $cat_difficulty->name }}</option>
+                @endforeach
             </select>
-            @error("difficulty")
+            @error("cat_difficulty_id")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <select name="dogFriendly" class="form-control" id="dogFriendly">
-            <option>oui - facile</option>
-            <option>oui - moyen</option>
-            <option>oui - difficile</option>
-            <option>non</option>
+            <select name="cat_dogfriendly_id" class="form-control" id="cat_dogfriendly">
+                @foreach ($cat_dogfriendlies as $cat_dogfriendly)
+                    <option @selected(old('cat_dogfriendly_id', $post->cat_dogfriendly_id) == $cat_dogfriendly->id) value="{{ $cat_dogfriendly->id }}">{{ $cat_dogfriendly->name }}</option>
+                @endforeach
             </select>
-            @error("dogFriendly")
+            @error("cat_dogfriendly_id")
                 {{ $message }}
             @enderror
         </div>
