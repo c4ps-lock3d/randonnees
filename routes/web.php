@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+// Welcome
+Route::get('/', [\App\Http\Controllers\BlogController::class, 'welcome'])->name('blog.welcome');
 
 // Authentification
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
@@ -23,21 +22,21 @@ Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout']
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'dologin']);
 
 // Afficher
-Route::get('/', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+Route::get('/randonnees', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 //Route::get('/triDistance', [\App\Http\Controllers\BlogController::class, 'indexTriDistance'])->name('blog.indexTriDistance');
-Route::get('/{slug}-{post}', [\App\Http\Controllers\BlogController::class, 'show'])->where([
+Route::get('/randonnees/{slug}-{post}', [\App\Http\Controllers\BlogController::class, 'show'])->where([
     'post'=>'[0-9]+',
     'slug'=>'[a-z0-9\-]+'
 ])->name('blog.show');
 
 // Créer
-Route::get('/new', [\App\Http\Controllers\BlogController::class, 'create'])->name('blog.create')->middleware('auth');
-Route::post('/new', [\App\Http\Controllers\BlogController::class, 'store']);
+Route::get('/randonnees/new', [\App\Http\Controllers\BlogController::class, 'create'])->name('blog.create')->middleware('auth');
+Route::post('/randonnees/new', [\App\Http\Controllers\BlogController::class, 'store']);
 
 // Editer
-Route::get('/{post}/edit', [\App\Http\Controllers\BlogController::class,'edit'])->name('blog.edit');
-Route::post('/{post}/edit', [\App\Http\Controllers\BlogController::class,'update']);
+Route::get('/randonnees/{post}/edit', [\App\Http\Controllers\BlogController::class,'edit'])->name('blog.edit');
+Route::post('/randonnees/{post}/edit', [\App\Http\Controllers\BlogController::class,'update']);
 
 // Pages uniques
 Route::get('/about', [\App\Http\Controllers\BlogController::class, 'about'])->name('blog.about');
-Route::get('/corse2023', [\App\Http\Controllers\BlogController::class, 'corse2023'])->name('blog.corse2023');
+Route::get('/carnets/corse2023', [\App\Http\Controllers\BlogController::class, 'corse2023'])->name('blog.corse2023');

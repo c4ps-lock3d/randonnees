@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use App\Http\Requests\FormPostRequest;
 use App\Models\CatArea;
 use App\Models\CatDifficulty;
@@ -14,23 +15,29 @@ use App\Models\CatTopography;
 
 class BlogController extends Controller
 {
-    // Afficher
-    public function index(): View{
-        //$triDistance = Post::all(['id', 'slug','title', 'eleAsc', 'distance', 'date'])->sortBy("distance");
-
-        return view('blog.index', [
-            /*'posts' => Post::get()*/ 'posts' => Post::all(['id', 'slug','title', 'eleAsc', 'distance', 'date', 'cat_area_id', 'cat_layout_id', 'cat_topography_id', 'cat_difficulty_id', 'cat_dogfriendly_id'])
-        ]);  
-        // Permet de récupérer seulement certains éléments (filtrer)
-        // $posts = \App\Models\Post::where('id', '>', 0)->limit(2)->get();
-        // return $posts;
+    // Welcome
+    public function welcome(): View{
+        return view('blog.welcome', [
+            'last_posts' => Post::get()->sortByDesc("date")->skip(0)->take(3),
+            'count_posts' => Post::count(),
+            'sum_distance' => Post::get()->sum('distance')
+        ]); 
     }
-    //public function indexTriDistance(): View{
-    //   // Permet de récupérer l'ensemble des articles
-    //  return view('blog.index', [
-    //      'posts' => Post::all(['id', 'slug','title', 'eleAsc', 'distance', 'date'])->sortBy("distance")
-    //    ]);
-    //}
+    
+    // Afficher et trier
+    public function index(Request $request): View{
+        $query = Post::get()->sortByDesc("date");
+        if($request->has('triDistEffDesc')){
+            $query = Post::get()->sortByDesc("distEff");
+        }
+        if($request->has('triDistEffAsc')){
+            $query = Post::get()->sortBy("distEff");
+        }
+        return view('blog.index', [
+            'posts' => $query
+        ]);  
+    }
+
     public function show(string $slug, Post $post):RedirectResponse | View{
         // Inutile grâce au Model Binding --> $post = Post::findOrFail($post);
         if($post->slug != $slug){
