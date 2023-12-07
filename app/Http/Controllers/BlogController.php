@@ -27,6 +27,12 @@ class BlogController extends Controller
     // Afficher et trier
     public function index(Request $request): View{
         $query = Post::get()->sortByDesc("date");
+        if($request->has('triDateDesc')){
+            $query = Post::get()->sortByDesc("date");
+        }
+        if($request->has('triDateAsc')){
+            $query = Post::get()->sortBy("date");
+        }
         if($request->has('triDistEffDesc')){
             $query = Post::get()->sortByDesc("distEff");
         }

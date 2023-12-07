@@ -5,7 +5,6 @@
 @section('content')
     <h1>Créer une randonnée</h1>
     <form action="" method="post">
-    @csrf
         <div class="form-group pb-2">
             {{-- L'attribut "value" permet de garder en mémoire l'ancienne valeur en cas d'erreur --}}
             <input type="text" name="title" value="{{ old('title', '') }}" placeholder="Titre" class="form-control" id="title">
