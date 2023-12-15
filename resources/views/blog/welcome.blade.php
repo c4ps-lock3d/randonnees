@@ -24,22 +24,22 @@
 
     <h1>Dernières randonnées</h1>
     <div class="row">
-        @foreach($last_posts as $post)
+        @foreach($last_posts as $postgpx)
         <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
-            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $post->slug, 'post' => $post->id]) }}">
+            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
                 <img src="https://www.appartementcourchevel.com/wp-content/uploads/2022/06/montagne.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{$post->title}}</h5>
+                    <h5 class="card-title">{{$postgpx->title}}</h5>
                     <p class="card-text">
-                    {{$post->eleAsc}} m
+                    {{$postgpx->eleAsc}} m
                     </p>
                     <p class="card-text">
-                        {{$post->distance}} km
+                        {{$postgpx->distance}} km
                     </p>
                 </div>
                 <div class="card-footer">
-                    {{$post->date}}
+                    {{$postgpx->date}}
                 </div>
                 </a>
             </div>

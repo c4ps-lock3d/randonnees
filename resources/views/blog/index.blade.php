@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 style="display:flex">Nos randonnées
-    <form style="margin-left: auto;" action="" method="get">
+    <form style="margin-left:auto" action="" method="get">
         <div class="btn-group btn-group-sm" role="group">
             <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Tri
@@ -19,22 +19,22 @@
     </form></h1>
 
     <div class="row">
-        @foreach($posts as $post)
+        @foreach($gpxes as $postgpx)
         <div class="col-xl-4 col-lg-6 col-md-6 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
-            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $post->slug, 'post' => $post->id]) }}">
+            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
                 <img src="https://www.appartementcourchevel.com/wp-content/uploads/2022/06/montagne.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{$post->title}}</h5>
+                    <h5 class="card-title">{{$postgpx->title}}</h5>
                     <p class="card-text">
-                        {{$post->eleAsc}} m
+                        {{$postgpx->eleAsc}} m
                     </p>
                     <p class="card-text">
-                        {{$post->distance}} km
+                        {{$postgpx->distance}} km
                     </p>
                 </div>
                 <div class="card-footer">
-                    {{$post->date}}
+                    {{$postgpx->date}}
                 </div>
                 </a>
             </div>

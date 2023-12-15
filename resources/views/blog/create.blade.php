@@ -5,9 +5,10 @@
 @section('content')
     <h1>Créer une randonnée</h1>
     <form action="" method="post">
+    @csrf
         <div class="form-group pb-2">
             {{-- L'attribut "value" permet de garder en mémoire l'ancienne valeur en cas d'erreur --}}
-            <input type="text" name="title" value="{{ old('title', '') }}" placeholder="Titre" class="form-control" id="title">
+            <input type="text" name="title" value="{{ old('title', $postgpx->title) }}" placeholder="Titre" class="form-control" id="title">
             @error("title")
                 {{ $message }}
             @enderror
@@ -55,31 +56,31 @@
         </div>
         <div class="row pb-2">
         <div class="col form-group">
-            <input type="number" step="0.1" name="distance" value="{{ old('distance', '') }}" placeholder="Distance [km]" class="form-control" id="distance">
+            <input type="number" step="0.1" name="distance" value="{{ old('distance', $postgpx->distance) }}" placeholder="Distance [km]" class="form-control" id="distance">
             @error("distance")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <input type="number" name="eleAsc"  value="{{ old('eleAsc', '') }}"placeholder="Dénivelé positif [m]" class="form-control" id="eleAsc">
+            <input type="number" name="eleAsc"  value="{{ old('eleAsc', $postgpx->eleAsc) }}"placeholder="Dénivelé positif [m]" class="form-control" id="eleAsc">
             @error("eleAsc")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <input type="number" name="eleDsc"  value="{{ old('eleDsc', '') }}"placeholder="Dénivelé négatif [m]" class="form-control" id="eleDsc">
+            <input type="number" name="eleDsc"  value="{{ old('eleDsc', $postgpx->eleDsc) }}"placeholder="Dénivelé négatif [m]" class="form-control" id="eleDsc">
             @error("eleDsc")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <input type="number" name="eleStart"  value="{{ old('eleStart', '') }}"placeholder="Altitude départ [m]" class="form-control" id="eleStart">
+            <input type="number" name="eleStart"  value="{{ old('eleStart', $postgpx->eleStart) }}"placeholder="Altitude départ [m]" class="form-control" id="eleStart">
             @error("eleStart")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <input type="number" name="eleMax" value="{{ old('eleMax', '') }}" placeholder="Altitude max [m]" class="form-control" id="eleMax">
+            <input type="number" name="eleMax" value="{{ old('eleMax', $postgpx->eleMax) }}" placeholder="Altitude max [m]" class="form-control" id="eleMax">
             @error("eleMax")
                 {{ $message }}
             @enderror
@@ -87,13 +88,13 @@
         </div>
         <div class="row pb-2">
         <div class="col form-group">
-            <input type="date" name="date" value="{{ old('date', '') }}" class="form-control" id="date">
+            <input type="date" name="date" value="{{ old('date', $postgpx->date) }}" class="form-control" id="date">
             @error("date")
                 {{ $message }}
             @enderror
         </div>
         <div class="col form-group">
-            <input type="time" name="duration" value="{{ old('duration', '') }}" class="form-control" id="duration">
+            <input type="time" name="duration" value="{{ old('duration', $postgpx->duration) }}" class="form-control" id="duration">
             @error("duration")
                 {{ $message }}
             @enderror

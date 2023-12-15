@@ -15,14 +15,10 @@ class AuthController extends Controller
     // Vérification des identifiants
     public function dologin(LoginRequest $request){
         $credentials = $request->validated();
-
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended(route('blog.index'));
         }
-        return to_route('auth.login')->withErrors([
-            'email' => "Token invalide"
-        ])->onlyInput('email');
     }
 
     // Processus de logout

@@ -24,8 +24,8 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'dologin']);
 // Afficher
 Route::get('/randonnees', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 //Route::get('/triDistance', [\App\Http\Controllers\BlogController::class, 'indexTriDistance'])->name('blog.indexTriDistance');
-Route::get('/randonnees/{slug}-{post}', [\App\Http\Controllers\BlogController::class, 'show'])->where([
-    'post'=>'[0-9]+',
+Route::get('/randonnees/{slug}-{postgpx}', [\App\Http\Controllers\BlogController::class, 'show'])->where([
+    'postgpx'=>'[0-9]+',
     'slug'=>'[a-z0-9\-]+'
 ])->name('blog.show');
 
@@ -34,9 +34,14 @@ Route::get('/randonnees/new', [\App\Http\Controllers\BlogController::class, 'cre
 Route::post('/randonnees/new', [\App\Http\Controllers\BlogController::class, 'store']);
 
 // Editer
-Route::get('/randonnees/{post}/edit', [\App\Http\Controllers\BlogController::class,'edit'])->name('blog.edit');
-Route::post('/randonnees/{post}/edit', [\App\Http\Controllers\BlogController::class,'update']);
+Route::get('/randonnees/{postgpx}/edit', [\App\Http\Controllers\BlogController::class,'edit'])->name('blog.edit');
+Route::post('/randonnees/{postgpx}/edit', [\App\Http\Controllers\BlogController::class,'update']);
 
 // Pages uniques
 Route::get('/about', [\App\Http\Controllers\BlogController::class, 'about'])->name('blog.about');
 Route::get('/carnets/corse2023', [\App\Http\Controllers\BlogController::class, 'corse2023'])->name('blog.corse2023');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Créer GPX
+Route::get('/randonnees/new-gpx', [\App\Http\Controllers\BlogController::class, 'creategpx'])->name('blog.creategpx')->middleware('auth');
+Route::post('/randonnees/new-gpx', [\App\Http\Controllers\BlogController::class, 'storegpx']);

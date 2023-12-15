@@ -4,7 +4,7 @@ body{
     /*background-color: #5CB18D;*/
     background-color: #C1DBB3;
     color: #193f25;
-    /*overflow-y: scroll;*/
+    overflow-y: scroll;
   }
 
 a{

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('gpxes', function (Blueprint $table) {
             $table->foreignIdFor(\App\Models\CatTopography::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('cat_topographies');
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('gpxes', function (Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\CatTopography::class);
         });
     }
