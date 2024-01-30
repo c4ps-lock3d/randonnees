@@ -9,9 +9,9 @@
     <article>
         <h1>{{$postgpx->title}}</h1>
         <p>Date : {{$postgpx->date}}</p>
-        <!--<p>Région : {{$postgpx->area}}</p>
+        <p>Région : {{$postgpx->cat_area->name}}</p>
         <p>Type de parcours : {{$postgpx->layout}}</p>
-        <p>Type de randonnée : {{$postgpx->topography}}</p>-->
+        <p>Type de randonnée : {{$postgpx->topography}}</p>
         <p>Distance : {{$postgpx->distance}} km</p>
         <p>Distance effort : {{$postgpx->distEff}} km</p>
         <p>Dénivelé positif : {{$postgpx->eleAsc}} m</p>
@@ -19,13 +19,13 @@
         <p>Altitude de départ : {{$postgpx->eleStart}} m</p>
         <p>Altitude maximale : {{$postgpx->eleMax}} m</p>
         <p>Durée : {{$postgpx->duration}}</p>
-        <!--<p>Difficulté : {{$postgpx->difficulty}}</p>-->
+        <p>Difficulté : {{$postgpx->difficulty}}</p>
         <p>Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a></p>
         @if (empty($postgpx->hut))
         @else
             <p>Cabane : {{$postgpx->hut}}</p>
         @endif
-        <!--<p>Accessibilité pour les toutous : {{$postgpx->dogFriendly}}</p>-->
+        <p>Accessibilité pour les toutous : {{$postgpx->dogFriendly}}</p>
         <p>Remarques : {{$postgpx->comments}}</p>
     </article>
 @endsection

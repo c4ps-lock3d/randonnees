@@ -10,4 +10,8 @@ class CatDogfriendly extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function gpxes(){
+        return $this->hasMany(Gpx::class);
+    }
 }

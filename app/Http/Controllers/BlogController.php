@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Gpx;
+use App\Models\Tag;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,28 +25,32 @@ use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     // Welcome
-    public function welcome(): View{
+    public function welcome(Gpx $postgpx):RedirectResponse | View{
         return view('blog.welcome', [
+            'postgpx' => $postgpx,
             'last_posts' => Gpx::get()->sortByDesc("date")->skip(0)->take(3),
             'count_posts' => Gpx::count(),
-            'sum_distance' => Gpx::get()->sum('distance')
-        ]); 
+            'sum_distance' => Gpx::get()->sum('distance'),
+            'fav_areas' => CatArea::select('name')->groupBy('name')->orderByRaw('COUNT(*) DESC')->limit(1)->get(),
+            //'getCol' => Gpx::select('name')->join('gpx_tag', 'gpxes.cat_area_id', '=', 'cat_areas.id')->where('cat_areas.name', $postgpx->name)->get()
+        ]);
     }
     
     // Afficher et trier
     public function index(Request $request): View{
-        $query = Gpx::get()->sortByDesc("date");
+        $query = Gpx::with('tags','cat_area')->get()->sortByDesc("date");
+       
         if($request->has('triDateDesc')){
-            $query = Gpx::get()->sortByDesc("date");
+            $query = Gpx::with('tags','cat_area')->get()->sortByDesc("date");
         }
         if($request->has('triDateAsc')){
-            $query = Gpx::get()->sortBy("date");
+            $query = Gpx::with('tags','cat_area')->get()->sortBy("date");
         }
         if($request->has('triDistEffDesc')){
-            $query = Gpx::get()->sortByDesc("distEff");
+            $query = Gpx::with('tags','cat_area')->get()->sortByDesc("distEff");
         }
         if($request->has('triDistEffAsc')){
-            $query = Gpx::get()->sortBy("distEff");
+            $query = Gpx::with('tags','cat_area')->get()->sortBy("distEff");
         }
         return view('blog.index', [
             'gpxes' => $query
@@ -58,7 +63,7 @@ class BlogController extends Controller
             return to_route('blog.show', ['slug' => $postgpx->slug, 'id' => $postgpx->id]);
         }
         return view('blog.show',[
-            'postgpx' => $postgpx
+            'postgpx' => $postgpx,
         ]);
     }
     
@@ -67,15 +72,16 @@ class BlogController extends Controller
         $postgpx = new Gpx();
         return view('blog.create', [
             'postgpx' => $postgpx,
+            'tags' => Tag::select('id', 'name')->get(),
             'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
-            'cat_topographies' => CatTopography::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
         ]);
     }
     public function store(FormPostRequest $request){
         $postgpx = Gpx::create($request->validated());
+        $postgpx->tags()->sync($request->validated('tags'));
         return redirect()->route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])->with('success', "Bravo, la randonnée a été créée.");
     }
 
@@ -83,15 +89,16 @@ class BlogController extends Controller
     public function edit(Gpx $postgpx){
         return view('blog.edit',[
             'postgpx' => $postgpx,
+            'tags' => Tag::select('id', 'name')->get(),
             'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
-            'cat_topographies' => CatTopography::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
         ]);
     }
     public function update(Gpx $postgpx, FormPostRequest $request){
         $postgpx->update($request->validated());
+        $postgpx->tags()->sync($request->validated('tags'));
         return redirect()->route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])->with('success', "Bravo, la randonnée a été modifiée.");
     }
 
@@ -157,9 +164,9 @@ class BlogController extends Controller
         ]);
         return redirect()->route('blog.edit',[
             'postgpx' => $postgpx,
+            'tags' => Tag::select('id', 'name')->get(),
             'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
-            'cat_topographies' => CatTopography::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
         ])->with('success', "Importation GPX effectuée. L'ajout de données additionelles est possible.");

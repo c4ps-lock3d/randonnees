@@ -3,7 +3,7 @@
 @section('title', 'Editer une randonnée')
 
 @section('content')
-    <h1>Editeur de rando</h1>
+    <h1>Ajouter/editer une randonnée</h1>
     <form action="" method="post">
     @csrf
         <div class="row">
@@ -16,7 +16,7 @@
                         <div class="form-group row mb-0">
                             {{-- L'attribut "value" permet de garder en mémoire l'ancienne valeur en cas d'erreur --}}
                             <label class="col-sm-3 col-form-label" for="title">Titre</label>
-                            <div class="col-sm-9"><input type="text" name="title" value="{{ old('title', $postgpx->title) }}" placeholder="Titre" class="form-control" id="title"></div>
+                            <div class="col-sm-9"><input type="text" name="title" value="{{ old('title', $postgpx->title) }}" class="form-control" id="title"></div>
                             @error("title")
                                 {{ $message }}
                             @enderror
@@ -28,7 +28,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                         <label class="col-sm-3 col-form-label" for="title">Distance</label>    
-                        <div class="col-sm-9 input-group"><input type="number" step="0.1" name="distance" value="{{ old('distance', $postgpx->distance) }}" placeholder="Distance [km]" class="form-control" id="distance">
+                        <div class="col-sm-9 input-group"><input type="number" step="0.1" name="distance" value="{{ old('distance', $postgpx->distance) }}" class="form-control" id="distance">
                         <div class="input-group-append">
                             <span class="input-group-text" id="distance">km</span>
                         </div>
@@ -41,7 +41,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                         <label class="col-sm-3 col-form-label" for="title">Dénivelé pos.</label>
-                        <div class="col-sm-9 input-group"><input type="number" name="eleAsc" value="{{ old('eleAsc', $postgpx->eleAsc) }}" placeholder="Dénivelé positif [m]" class="form-control" id="eleAsc">
+                        <div class="col-sm-9 input-group"><input type="number" name="eleAsc" value="{{ old('eleAsc', $postgpx->eleAsc) }}" class="form-control" id="eleAsc">
                         <div class="input-group-append">
                             <span class="input-group-text" id="eleAsc">m</span>
                         </div>
@@ -54,7 +54,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                         <label class="col-sm-3 col-form-label" for="title">Dénivelé nég.</label>
-                        <div class="col-sm-9 input-group"><input type="number" name="eleDsc" value="{{ old('eleDsc', $postgpx->eleDsc) }}" placeholder="Dénivelé négatif [m]" class="form-control" id="eleDsc">
+                        <div class="col-sm-9 input-group"><input type="number" name="eleDsc" value="{{ old('eleDsc', $postgpx->eleDsc) }}" class="form-control" id="eleDsc">
                         <div class="input-group-append">
                             <span class="input-group-text" id="eleDsc">m</span>
                         </div>
@@ -67,7 +67,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                         <label class="col-sm-3 col-form-label" for="title">Altitude dép.</label>
-                        <div class="col-sm-9 input-group"><input type="number" name="eleStart" value="{{ old('eleStart', $postgpx->eleStart) }}" placeholder="Altitude départ [m]" class="form-control" id="eleStart">
+                        <div class="col-sm-9 input-group"><input type="number" name="eleStart" value="{{ old('eleStart', $postgpx->eleStart) }}" class="form-control" id="eleStart">
                         <div class="input-group-append">
                             <span class="input-group-text" id="eleStart">m</span>
                         </div>
@@ -80,7 +80,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                         <label class="col-sm-3 col-form-label" for="title">Altitude max.</label>
-                        <div class="col-sm-9 input-group"><input type="number" name="eleMax" value="{{ old('eleMax', $postgpx->eleMax) }}" placeholder="Altitude max [m]" class="form-control" id="eleMax">
+                        <div class="col-sm-9 input-group"><input type="number" name="eleMax" value="{{ old('eleMax', $postgpx->eleMax) }}" class="form-control" id="eleMax">
                         <div class="input-group-append">
                             <span class="input-group-text" id="eleMax">m</span>
                         </div>
@@ -144,15 +144,16 @@
                         @enderror
                         </div>
                     </div>
+                    @php $tagsIds = $postgpx->tags()->pluck('id');@endphp
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
-                    <label class="col-sm-3 col-form-label" for="title">Topographie</label>
-                    <div class="col-sm-9 input-group"><select name="cat_topography_id" class="form-control" id="cat_topography">
-                            @foreach ($cat_topographies as $cat_topography)
-                                <option @selected(old('cat_topography_id', $postgpx->cat_topography_id) == $cat_topography->id) value="{{ $cat_topography->id }}">{{ $cat_topography->name }}</option>
+                    <label class="col-sm-3 col-form-label" for="tag">Tags</label>
+                    <div class="col-sm-9 input-group"><select name="tags[]" class="form-control" id="tag" multiple="multiple" style="height:100%" size="9">
+                            @foreach ($tags as $tag)
+                                <option @selected($tagsIds->contains($tag->id)) value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach
                         </select></div>
-                        @error("cat_topography_id")
+                        @error("tags")
                             {{ $message }}
                         @enderror
                         </div>
@@ -186,7 +187,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                     <label class="col-sm-3 col-form-label" for="title">Cabane</label>
-                    <div class="col-sm-9 input-group"><input type="text" name="hut" value="{{ old('hut', $postgpx->hut) }}" placeholder="Cabane" class="form-control" id="hut"></div>
+                    <div class="col-sm-9 input-group"><input type="text" name="hut" value="{{ old('hut', $postgpx->hut) }}" class="form-control" id="hut"></div>
                         @error("hut")
                             {{ $message }}
                         @enderror
@@ -195,7 +196,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                     <label class="col-sm-3 col-form-label" for="title">Lien Google</label>
-                    <div class="col-sm-9 input-group"><input type="url" name="google" value="{{ old('google', $postgpx->google) }}"placeholder="Lien Google Maps" class="form-control" id="google"></div>
+                    <div class="col-sm-9 input-group"><input type="url" name="google" value="{{ old('google', $postgpx->google) }}" class="form-control" id="google"></div>
                         @error("google")
                             {{ $message }}
                         @enderror
@@ -204,7 +205,7 @@
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
                     <label class="col-sm-3 col-form-label" for="title">Remarques</label>
-                    <div class="col-sm-9 input-group"><input type="text" name="comments" placeholder="Remarques" class="form-control" id="comments"></div>
+                    <div class="col-sm-9 input-group"><input type="text" name="comments" class="form-control" id="comments"></div>
                         @error("comments")
                             {{ $message }}
                         @enderror

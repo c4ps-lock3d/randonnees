@@ -12,4 +12,8 @@ class Tag extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function gpxes(){
+        return $this->hasMany(Gpx::class);
+    }
 }

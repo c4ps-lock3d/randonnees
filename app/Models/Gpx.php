@@ -37,17 +37,13 @@ class Gpx extends Model
     public function cat_layout (){
         return $this->belongsTo(CatLayout::class);
     }
-    public function cat_topography (){
-        return $this->belongsTo(CatTopography::class);
-    }
     public function cat_difficulty (){
         return $this->belongsTo(CatDifficulty::class);
     }
     public function cat_dogfriendly (){
         return $this->belongsTo(CatDogfriendly::class);
     }
-
-    public function tags(){
+    public function tags (){
         return $this->belongsToMany(Tag::class);
     }
 }

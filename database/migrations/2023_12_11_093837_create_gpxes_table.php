@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('eleStart');
             $table->string('eleMax');
             $table->string('duration');
-            $table->string('gpxpath');
+            $table->string('gpxpath')->nullable();
             $table->string('google')->nullable();
             $table->string('hut')->nullable();
             $table->longtext('comments')->nullable();

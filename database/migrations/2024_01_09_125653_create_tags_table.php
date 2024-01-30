@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_topographies', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
         });
-        Schema::table('gpxes', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\CatTopography::class)->nullable()->constrained()->cascadeOnDelete();
+        Schema::create('gpx_tag', function (Blueprint $table) {
+            $table->foreignIdFor(\App\Models\Gpx::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Tag::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->primary(['gpx_id', 'tag_id']);
         });
     }
 
@@ -26,9 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cat_topographies');
-        Schema::table('gpxes', function (Blueprint $table) {
-            $table->dropForeignIdFor(\App\Models\CatTopography::class);
-        });
+        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('tags');
     }
 };
