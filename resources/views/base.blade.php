@@ -31,8 +31,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ route('blog.index') }}">Toutes les randonnées<span class="sr-only">(current)</span></a>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('blog.welcome') }}">Acceuil<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('blog.index') }}">Toutes les randonnées<span class="sr-only"></span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,13 +61,13 @@
             <form class="dropdown-item" action="{{ route('auth.logout')}}" method="post">
               @method('delete')  
               @csrf
-              <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;">logout</button>
+              <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;">Se déconnecter</button>
             </form>
         </li> 
       @endauth
       @guest
         <div class="nav-item">
-          <a href="{{ route('auth.login')}}"><button style="width:80px" class="btn btn-dark">login</button></a>
+          <a href="{{ route('auth.login')}}"><button style="width:120px" class="btn btn-dark">Se connecter</button></a>
         </div>
       @endguest
     </ul>

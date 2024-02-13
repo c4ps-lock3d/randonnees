@@ -14,6 +14,6 @@ class Tag extends Model
     ];
 
     public function gpxes(){
-        return $this->hasMany(Gpx::class);
+        return $this->belongsToMany(Gpx::class);
     }
 }

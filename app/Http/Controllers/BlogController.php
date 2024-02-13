@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Gpx;
 use App\Models\Tag;
 use Illuminate\View\View;
@@ -16,11 +15,11 @@ use App\Models\CatArea;
 use App\Models\CatDifficulty;
 use App\Models\CatDogfriendly;
 use App\Models\CatLayout;
-use App\Models\CatTopography;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 class BlogController extends Controller
 {
@@ -37,24 +36,131 @@ class BlogController extends Controller
     }
     
     // Afficher et trier
-    public function index(Request $request): View{
-        $query = Gpx::with('tags','cat_area')->get()->sortByDesc("date");
-       
-        if($request->has('triDateDesc')){
-            $query = Gpx::with('tags','cat_area')->get()->sortByDesc("date");
+    public function index(Request $request, Gpx $query): View{
+        $query = $query->newQuery();
+
+        if($request->has('Sommet')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Sommet");
+            });
+        }
+        if($request->has('Gorges')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Gorges");
+            });
+        }
+        if($request->has('Col')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Col");
+            });
+        }
+        if($request->has('Refuge')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Refuge");
+            });
+        }
+        if($request->has('Lac')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Lac");
+            });
+        }
+        if($request->has('Village')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Village");
+            });
+        }
+        if($request->has('Panorama')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Panorama");
+            });
+        }
+        if($request->has('Plat')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Plat");
+            });
+        }
+        if($request->has('Ballade')){
+            $query->orWhereHas('tags', function($querybuilder) {
+                $querybuilder->where('tags.name', "Ballade");
+            });
+        }
+        if($request->has('Vaud')){
+            $query->Where('cat_area_id', 1);
+        }
+        if($request->has('Valais')){
+            $query->Where('cat_area_id', 2);
+        }
+        if($request->has('Fribourg')){
+            $query->Where('cat_area_id', 3);
+        }
+        if($request->has('Bern')){
+            $query->Where('cat_area_id', 4);
+        }
+        if($request->has('Jura')){
+            $query->Where('cat_area_id', 5);
+        }
+        if($request->has('Grisons')){
+            $query->Where('cat_area_id', 6);
+        }
+        if($request->has('Schwytz')){
+            $query->Where('cat_area_id', 7);
+        }
+        if($request->has('France')){
+            $query->Where('cat_area_id', 8);
+        }
+        if($request->has('T1')){
+            $query->Where('cat_difficulty_id', 1);
+        }
+        if($request->has('T2')){
+            $query->Where('cat_difficulty_id', 2);
+        }
+        if($request->has('T2+')){
+            $query->Where('cat_difficulty_id', 3);
+        }
+        if($request->has('T3')){
+            $query->Where('cat_difficulty_id', 4);
+        }
+        if($request->has('T3+')){
+            $query->Where('cat_difficulty_id', 5);
+        }
+        if($request->has('facile')){
+            $query->Where('cat_dogfriendly_id', 1);
+        }
+        if($request->has('moyen')){
+            $query->Where('cat_dogfriendly_id', 2);
+        }
+        if($request->has('difficile')){
+            $query->Where('cat_dogfriendly_id', 3);
+        }
+        if($request->has('impossible')){
+            $query->Where('cat_dogfriendly_id', 4);
+        }
+        if($request->has('Boucle')){
+            $query->Where('cat_layout_id', 1);
+        }
+        if($request->has('Aller-Retour')){
+            $query->Where('cat_layout_id', 2);
+        }
+        if($request->has('Aller')){
+            $query->Where('cat_layout_id', 3);
         }
         if($request->has('triDateAsc')){
-            $query = Gpx::with('tags','cat_area')->get()->sortBy("date");
+            $query->orderBy('date', 'asc');
         }
-        if($request->has('triDistEffDesc')){
-            $query = Gpx::with('tags','cat_area')->get()->sortByDesc("distEff");
+        if($request->has('triDateDesc')){
+            $query->orderBy('date', 'desc');
         }
-        if($request->has('triDistEffAsc')){
-            $query = Gpx::with('tags','cat_area')->get()->sortBy("distEff");
-        }
+        $query->orderBy('date', 'desc');
         return view('blog.index', [
-            'gpxes' => $query
-        ]);  
+            'gpxes' => $query->get(),
+            'tags' => Tag::select('id', 'name')->get(),
+            'cat_areas' => CatArea::select('id', 'name')->get(),
+            'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
+            'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get(),
+            'cat_layouts' => CatLayout::select('id', 'name')->get(),
+            'count_posts' => $query->count(),
+            'count_total_posts' => Gpx::count(),
+        ]);
     }
 
     public function show(string $slug, Gpx $postgpx):RedirectResponse | View{
@@ -97,7 +203,16 @@ class BlogController extends Controller
         ]);
     }
     public function update(Gpx $postgpx, FormPostRequest $request){
-        $postgpx->update($request->validated());
+        $data = $request->validated();
+        /** @var UploadedFile|null $image */
+        $image = $request->validated('image');
+
+        //Autorise l'upload seulement si une image est ajoutée dans le champs image
+        if ($image != null && !$image->getError()){
+            $imgpath = $image->store('imgrando', 'public');
+            $data['image'] = $imgpath;
+        }
+        $postgpx->update($data);
         $postgpx->tags()->sync($request->validated('tags'));
         return redirect()->route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])->with('success', "Bravo, la randonnée a été modifiée.");
     }

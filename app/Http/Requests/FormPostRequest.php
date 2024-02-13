@@ -42,7 +42,8 @@ class FormPostRequest extends FormRequest
             'duration' => ['required'],
             'google' => ['nullable'],
             'hut' => ['nullable'],
-            'comments' => ['nullable']
+            'comments' => ['nullable'],
+            'image' => ['image', 'max:2000']
         ];
     }
 

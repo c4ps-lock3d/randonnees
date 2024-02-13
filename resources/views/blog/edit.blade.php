@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Ajouter/editer une randonnée</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     @csrf
         <div class="row">
             <div class="col-xl-6 form-group">
@@ -207,6 +207,15 @@
                     <label class="col-sm-3 col-form-label" for="title">Remarques</label>
                     <div class="col-sm-9 input-group"><input type="text" name="comments" class="form-control" id="comments"></div>
                         @error("comments")
+                            {{ $message }}
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="col-12 form-group">
+                    <div class="form-group row mb-0">
+                    <label class="col-sm-3 col-form-label" for="title">Image</label>
+                    <div class="col-sm-9 input-group"><input class="form-control-file" type="file" name="image" class="form-control" id="image"></div>
+                        @error("image")
                             {{ $message }}
                         @enderror
                         </div>

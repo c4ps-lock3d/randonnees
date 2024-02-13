@@ -28,7 +28,8 @@ class Gpx extends Model
         'cat_layout_id',
         'cat_topography_id',
         'cat_difficulty_id',
-        'cat_dogfriendly_id'
+        'cat_dogfriendly_id',
+        'image'
     ];
 
     public function cat_area (){
@@ -44,6 +45,6 @@ class Gpx extends Model
         return $this->belongsTo(CatDogfriendly::class);
     }
     public function tags (){
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 }

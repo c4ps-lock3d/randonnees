@@ -17,6 +17,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::create('gpx_tag', function (Blueprint $table) {
+            $table->timestamps();
             $table->foreignIdFor(\App\Models\Gpx::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Tag::class)->nullable()->constrained()->cascadeOnDelete();
             $table->primary(['gpx_id', 'tag_id']);
