@@ -31,7 +31,6 @@ class BlogController extends Controller
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
             'fav_areas' => CatArea::select('name')->groupBy('name')->orderByRaw('COUNT(*) DESC')->limit(1)->get(),
-            //'getCol' => Gpx::select('name')->join('gpx_tag', 'gpxes.cat_area_id', '=', 'cat_areas.id')->where('cat_areas.name', $postgpx->name)->get()
         ]);
     }
     
