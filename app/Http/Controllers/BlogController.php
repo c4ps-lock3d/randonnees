@@ -150,6 +150,18 @@ class BlogController extends Controller
         if($request->has('triDateDesc')){
             $query->orderBy('date', 'desc');
         }
+        if($request->has('triDistEffAsc')){
+            $query->orderBy('distEff', 'asc');
+        }
+        if($request->has('triDistEffDesc')){
+            $query->orderBy('distEff', 'desc');
+        }
+        if($request->has('triDurationAsc')){
+            $query->orderBy('duration', 'asc');
+        }
+        if($request->has('triDurationDesc')){
+            $query->orderBy('duration', 'desc');
+        }
         $query->orderBy('date', 'desc');
         return view('blog.index', [
             'gpxes' => $query->get(),

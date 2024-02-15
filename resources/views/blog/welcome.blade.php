@@ -37,7 +37,11 @@
         <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
             <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
-                <img src="https://www.appartementcourchevel.com/wp-content/uploads/2022/06/montagne.jpg" class="card-img-top" alt="...">
+            @if($postgpx->image)
+                    <img src="{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">
+                @else
+                    <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
+                @endif
                 <div class='card-img-overlay'>
                 <div class='float-left'>
                     <div>

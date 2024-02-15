@@ -31,22 +31,21 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('blog.welcome') }}">Acceuil<span class="sr-only">(current)</span></a>
+    <li class="nav-item">
+        <a @class(['nav-link', 'active' => request()->route()->getName() == 'blog.welcome']) href="{{ route('blog.welcome') }}">Acceuil<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('blog.index') }}">Toutes les randonnées<span class="sr-only"></span></a>
+        <a @class(['nav-link', 'active' => request()->route()->getName() == 'blog.index']) href="{{ route('blog.index') }}">Toutes les randonnées<span class="sr-only"></span></a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a @class(['nav-link dropdown-toggle', 'active' => request()->route()->getName() == 'blog.corse2023']) href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           carnets de voyage
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('blog.corse2023') }}">Corse 2023</a>
-          <a class="dropdown-item" href="">Norvège 2019 (bientôt)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('blog.about') }}">A propos <span class="sr-only">(current)</span></a>
+        <a @class(['nav-link', 'active' => request()->route()->getName() == 'blog.about']) href="{{ route('blog.about') }}">A propos <span class="sr-only"></span></a>
       </li>
     </ul>
     <ul class="navbar-nav navbar-right">
@@ -90,6 +89,12 @@
 <script>
   new TomSelect('select[multiple]', {plugins: {remove_button: {title: 'Supprimer'}, no_backspace_delete: {title: 'NoDelete'}}})
 </script>
+<script type="text/javascript">
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+        e.stopPropagation();
+    });
+</script>
+
 
 </body>
 </html>
