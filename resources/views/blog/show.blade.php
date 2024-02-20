@@ -47,8 +47,9 @@
         <div class="col-6">
             <canvas id="myChart"></canvas>
         </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="text/javascript">
   var varChartDis = {{ Js::from($chartDis) }};

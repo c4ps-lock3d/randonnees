@@ -5,27 +5,75 @@
 @section('content')   
     <h1></h1>
     <div class="row">
+    <div class="col-lg-4 pb-4">
+            <div class="card h-100 text-dark bg-light shadow-lg">
+                <div style="text-align:center" class="card-header">
+                    <p class="card-text">Nombre de randonnées par régions</p>
+                </div>
+                <div style="text-align:center" class="card-body">
+                
+                <div>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script type="text/javascript">
+                    var varChartCatArea = {{ Js::from($list_areas) }};
+                    var varChartCatAreaCount = {{ Js::from($count_list_areas) }};
+                    const ctx = document.getElementById('myChart');
+                    new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: varChartCatArea,
+                            datasets: [{
+                                label: 'Nombre de randonnées',
+                                data: varChartCatAreaCount,
+                                backgroundColor: [
+                                        '#FFB3C2',
+                                        '#A0D0F6',
+                                        '#FFE6AD',        
+                                        '#ABDFDF'
+                                ],
+                                hoverOffset: 4
+                            }],
+
+                            
+                        },
+                        options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            display: false,
+                                            position: 'bottom',
+                                        },
+                                        title: {
+                                            display: false,
+                                            text: 'Chart.js Doughnut Chart'
+                                        }
+                                    }
+                                },
+                    });
+                </script>
+            </div>    
+            </div>
+        </div>
         <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
-                <div style="text-align:center" class="card-body">
+                <div style="text-align:center" class="card-header">
                     <p class="card-text mb-0">Nombre de randonnées enregistrées</p>
+                </div>
+                <div style="text-align:center" class="card-body">
+                    
                     <p style="font-size:28px" class="card-text">{{$count_posts}}</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
-                <div style="text-align:center" class="card-body">
+                <div style="text-align:center" class="card-header">
                     <p class="card-text mb-0">Distance totale parcourue</p>
-                    <p style="font-size:28px" class="card-text">{{round($sum_distance,0)}} km</p>
                 </div>
-            </div>
-        </div>
-        <div class="col-lg-4 pb-4">
-            <div class="card h-100 text-dark bg-light shadow-lg">
                 <div style="text-align:center" class="card-body">
-                    <p class="card-text mb-0">Région préférée</p>
-                    <p style="font-size:28px" class="card-text">@foreach($fav_areas as $fav_area){{$fav_area->name}}@endforeach</p>
+                    <p style="font-size:28px" class="card-text">{{round($sum_distance,0)}} km</p>
                 </div>
             </div>
         </div>

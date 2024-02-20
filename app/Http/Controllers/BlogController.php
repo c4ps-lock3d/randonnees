@@ -27,12 +27,17 @@ class BlogController extends Controller
 {
     // Welcome
     public function welcome(Gpx $postgpx):RedirectResponse | View{
+        $list_areas = Gpx::join('cat_areas', 'gpxes.cat_area_id', '=', 'cat_areas.id')->select('cat_areas.name')->distinct()->get()->pluck('name');
+        foreach($list_areas as $list_area){
+            $areas_count[] = Gpx::join('cat_areas', 'gpxes.cat_area_id', '=', 'cat_areas.id')->select('cat_areas.name')->where('cat_areas.name', $list_area)->get()->count();
+        }
         return view('blog.welcome', [
             'postgpx' => $postgpx,
             'last_posts' => Gpx::get()->sortByDesc("date")->skip(0)->take(3),
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
-            'fav_areas' => CatArea::select('name')->groupBy('name')->orderByRaw('COUNT(*) DESC')->limit(1)->get(),
+            'list_areas' => $list_areas,
+            'count_list_areas' => $areas_count
         ]);
     }
     
@@ -193,10 +198,8 @@ class BlogController extends Controller
     // Créer
     public function create(){
         $postgpx = new Gpx();
-        //$trace = new Trace();
         return view('blog.create', [
             'postgpx' => $postgpx,
-            //'traces' => $trace,
             'tags' => Tag::select('id', 'name')->get(),
             'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
@@ -207,12 +210,9 @@ class BlogController extends Controller
     public function store(FormPostRequest $request){
         $postgpx = Gpx::create($request->validated());
         $postgpx->tags()->sync($request->validated('tags'));
-        //$postgpx->traces()->sync($request->validated('traces'));
         return redirect()->route('blog.show', [
             'slug' => $postgpx->slug,
             'postgpx' => $postgpx->id,
-            'chartEle' => Trace::select('gpx_id', 'ele')->where('gpx_id', $postgpx->id)->get(),
-            'chartDis' => Trace::select('gpx_id', 'dis')->where('gpx_id', $postgpx->id)->get(),
         ])->with('success', "Bravo, la randonnée a été créée.");
     }
 
@@ -242,8 +242,6 @@ class BlogController extends Controller
         return redirect()->route('blog.show',[
             'slug' => $postgpx->slug,
             'postgpx' => $postgpx->id,
-            'chartEle' => Trace::select('gpx_id', 'ele')->where('gpx_id', $postgpx->id)->get(),
-            'chartDis' => Trace::select('gpx_id', 'dis')->where('gpx_id', $postgpx->id)->get(), 
         ])->with('success', "Bravo, la randonnée a été modifiée.");
     }
 
