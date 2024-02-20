@@ -4,21 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Gpx;
 use App\Models\Tag;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\FormPostRequest;
-use App\Http\Requests\FormGpxRequest;
+use App\Models\Trace;
 use App\Models\CatArea;
 use App\Models\CatDifficulty;
 use App\Models\CatDogfriendly;
 use App\Models\CatLayout;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use App\Http\Requests\FormPostRequest;
+use App\Http\Requests\FormGpxRequest;
+use Illuminate\Support\Str;
+use App\Http\Requests\TraceRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 
 class BlogController extends Controller
@@ -174,21 +176,27 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show(string $slug, Gpx $postgpx):RedirectResponse | View{
+    public function show(string $slug, Gpx $postgpx){
         // Inutile grâce au Model Binding --> $post = Post::findOrFail($post);
         if($postgpx->slug != $slug){
             return to_route('blog.show', ['slug' => $postgpx->slug, 'id' => $postgpx->id]);
         }
+        $dataEle = Trace::select('ele')->where('gpx_id', $postgpx->id)->get()->pluck('ele');
+        $dataDis = Trace::select('dis')->where('gpx_id', $postgpx->id)->get()->pluck('dis');
         return view('blog.show',[
             'postgpx' => $postgpx,
+            'chartEle' => $dataEle,
+            'chartDis' => $dataDis,
         ]);
     }
     
     // Créer
     public function create(){
         $postgpx = new Gpx();
+        //$trace = new Trace();
         return view('blog.create', [
             'postgpx' => $postgpx,
+            //'traces' => $trace,
             'tags' => Tag::select('id', 'name')->get(),
             'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
@@ -199,7 +207,13 @@ class BlogController extends Controller
     public function store(FormPostRequest $request){
         $postgpx = Gpx::create($request->validated());
         $postgpx->tags()->sync($request->validated('tags'));
-        return redirect()->route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])->with('success', "Bravo, la randonnée a été créée.");
+        //$postgpx->traces()->sync($request->validated('traces'));
+        return redirect()->route('blog.show', [
+            'slug' => $postgpx->slug,
+            'postgpx' => $postgpx->id,
+            'chartEle' => Trace::select('gpx_id', 'ele')->where('gpx_id', $postgpx->id)->get(),
+            'chartDis' => Trace::select('gpx_id', 'dis')->where('gpx_id', $postgpx->id)->get(),
+        ])->with('success', "Bravo, la randonnée a été créée.");
     }
 
     // Editer
@@ -225,7 +239,12 @@ class BlogController extends Controller
         }
         $postgpx->update($data);
         $postgpx->tags()->sync($request->validated('tags'));
-        return redirect()->route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])->with('success', "Bravo, la randonnée a été modifiée.");
+        return redirect()->route('blog.show',[
+            'slug' => $postgpx->slug,
+            'postgpx' => $postgpx->id,
+            'chartEle' => Trace::select('gpx_id', 'ele')->where('gpx_id', $postgpx->id)->get(),
+            'chartDis' => Trace::select('gpx_id', 'dis')->where('gpx_id', $postgpx->id)->get(), 
+        ])->with('success', "Bravo, la randonnée a été modifiée.");
     }
 
     // Pages uniques
@@ -244,7 +263,7 @@ class BlogController extends Controller
 
         ]);
     }
-    public function storegpx(Gpx $postgpx, FormGpxRequest $request){
+    public function storegpx(Gpx $postgpx, FormGpxRequest $request, Trace $trace){
         /** @var UploadedFile|null $gpxpath */
         $postgpx = $request->validated('gpxpath');
         $imagePath = $postgpx->store('gpx');
@@ -267,14 +286,7 @@ class BlogController extends Controller
             $eleAsc = round($waypoint_stage_before = (int) $ex->waypoint_stage_before['ascent'],0);
             $eleDsc = round($waypoint_stage_before = (int) $ex->waypoint_stage_before['descent'],0);    
         }}
-    
-        $arr = array();
-        foreach ($gpx->trk as $trak) {
-            foreach ($trak->trkseg as $trakseg) {
-                foreach ($trakseg->trkpt as$trakpt) {
-                   $arr[] = (int) $trakpt->ele;
-        }}}
-        $eleMax = max($arr);
+   
         $postgpx = Gpx::create([
             'gpxpath' => $imagePath,
             'eleStart' => $eleStart,
@@ -284,12 +296,39 @@ class BlogController extends Controller
             'duration' => $duration,
             'eleAsc' => $eleAsc,
             'eleDsc' => $eleDsc,
-            'eleMax' => $eleMax,
+            'eleMax' => 0,
             'slug' => Str::slug($title),
             'distEff' => round($distance+$eleAsc/100+$eleDsc/400, 1)
         ]);
+        
+        foreach ($gpx->trk->trkseg->trkpt as $trakpt) {
+            $trace = Trace::create([
+                'lat' => $trakpt['lat'],
+                'lon' => $trakpt['lon'],
+                'ele' => round((int)$trakpt->ele,0),
+                'gpx_id' => $postgpx->id,
+                'sid' => $trakpt->extensions->routepoint_id
+            ]);
+            $longitude[] = $trakpt['lon'];
+            $latitude[] =  $trakpt['lat'];
+            $sid[] =  $trakpt->extensions->routepoint_id;
+        }
+
+        $distance = 0;
+        for($i = 1; $i <= count($longitude)-2; $i++){
+            $theta = $longitude[$i] - $longitude[$i+1]; 
+            $distance  = $distance + ((rad2deg(acos((sin(deg2rad((float)$latitude[$i])) * sin(deg2rad((float)$latitude[$i+1]))) + (cos(deg2rad((float)$latitude[$i])) * cos(deg2rad((float)$latitude[$i+1])) * cos(deg2rad((float)$theta))))))* 60 * 1.1515 * 1.609344); 
+            Trace::where('sid', $sid[$i])->update([
+                'dis' => round($distance,1)
+            ]);
+        }
+
+        $eleMax = Trace::max('ele');
+        Gpx::where('id', $postgpx->id)->update(['eleMax' => round((int)$eleMax,0)]);
+
         return redirect()->route('blog.edit',[
             'postgpx' => $postgpx,
+            'trace' => $trace,
             'tags' => Tag::select('id', 'name')->get(),
             'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),

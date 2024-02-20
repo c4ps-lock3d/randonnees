@@ -29,10 +29,6 @@ return new class extends Migration
             $table->longtext('comments')->nullable();
             $table->timestamps();
         });
-
-        Schema::table('traces', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\Gpx::class)->nullable()->constrained()->cascadeOnDelete();
-        });
     }
 
     /**
@@ -40,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('traces');
+        Schema::dropIfExists('gpxes');
     }
 };

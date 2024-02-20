@@ -13,8 +13,10 @@ class Trace extends Model
         'lat',
         'lon',
         'ele',
-        'time',
         'gpx_id',
+        'dis',
+        'tim',
+        'sid',
     ];
 
     public function gpxes (){
