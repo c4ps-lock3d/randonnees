@@ -12,8 +12,14 @@
 <div class="col-6">
         <p>Date : {{$postgpx->date}}</p>
         <p>Région : {{$postgpx->cat_area->name}}</p>
-        <p>Type de parcours : {{$postgpx->layout}}</p>
-        <p>Type de randonnée : {{$postgpx->topography}}</p>
+        <p>Type de parcours : {{$postgpx->cat_layout->name}}</p>
+        <p>Type de randonnée :
+          @foreach($postgpx->tags as $tag)
+            <span class="badge bg-secondary text-light">
+              {{$tag->name}}
+            </span>
+          @endforeach
+        </p>
         <p>Distance : {{$postgpx->distance}} km</p>
         <p>Distance effort : {{$postgpx->distEff}} km</p>
         <p>Dénivelé positif : {{$postgpx->eleAsc}} m</p>
@@ -21,14 +27,21 @@
         <p>Altitude de départ : {{$postgpx->eleStart}} m</p>
         <p>Altitude maximale : {{$postgpx->eleMax}} m</p>
         <p>Durée : {{$postgpx->duration}}</p>
-        <p>Difficulté : {{$postgpx->difficulty}}</p>
-        <p>Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a></p>
+        <p>Difficulté : {{$postgpx->cat_difficulty->name}}</p>
+        <p>Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}</p>
+        @if (empty($postgpx->google))
+        @else
+          <p>Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a></p>
+        @endif
         @if (empty($postgpx->hut))
         @else
-            <p>Cabane : {{$postgpx->hut}}</p>
+          <p>Cabane : {{$postgpx->hut}}</p>
         @endif
-        <p>Accessibilité pour les toutous : {{$postgpx->dogFriendly}}</p>
-        <p>Remarques : {{$postgpx->comments}}</p>
+        @if (empty($postgpx->comments))
+        @else
+          <p>Remarques : {{$postgpx->comments}}</p>
+        @endif
+        
 </div>
 
         <div class="col-6">
@@ -80,6 +93,4 @@
     }
   });
 </script>
-
-    
 @endsection
