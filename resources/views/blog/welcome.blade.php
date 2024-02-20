@@ -5,7 +5,7 @@
 @section('content')   
     <h1></h1>
     <div class="row">
-    <div class="col-lg-4 pb-4">
+        <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Nombre de randonnées par régions</p>
@@ -42,7 +42,7 @@
                                     responsive: true,
                                     plugins: {
                                         legend: {
-                                            display: false,
+                                            display: true,
                                             position: 'bottom',
                                         },
                                         title: {
@@ -59,24 +59,94 @@
         <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
                 <div style="text-align:center" class="card-header">
-                    <p class="card-text mb-0">Nombre de randonnées enregistrées</p>
+                    <p class="card-text">Nombre de randonnées par échelle de difficutée</p>
                 </div>
                 <div style="text-align:center" class="card-body">
-                    
-                    <p style="font-size:28px" class="card-text">{{$count_posts}}</p>
+                <div>
+                    <canvas id="myChartDifficulty"></canvas>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script type="text/javascript">
+                    var varChartCatDifficulty = {{ Js::from($list_difficulties) }};
+                    var varChartCatDifficultyCount = {{ Js::from($count_list_difficulties) }};
+                    const ctxDifficulty = document.getElementById('myChartDifficulty');
+                    new Chart(ctxDifficulty, {
+                        type: 'doughnut',
+                        data: {
+                            labels: varChartCatDifficulty,
+                            datasets: [{
+                                label: 'Nombre de randonnées',
+                                data: varChartCatDifficultyCount,
+                                backgroundColor: [
+                                        '#FFB3C2',
+                                        '#A0D0F6',
+                                        '#FFE6AD',        
+                                        '#ABDFDF'
+                                ],
+                                hoverOffset: 4
+                            }],
+
+                            
+                        },
+                        options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom',
+                                        },
+                                        title: {
+                                            display: false,
+                                            text: 'Chart.js Doughnut Chart'
+                                        }
+                                    }
+                                },
+                    });
+                </script>
+            </div>    
+            </div>
+        </div>
+        <div class="col-lg-4">
+
+            <div class="row">
+                <div class="col-lg-12 pb-4">
+                    <div class="card text-dark bg-light shadow-lg">
+                        <div style="text-align:center" class="card-header">
+                            <p class="card-text">Nombre de randonnées enregistrées</p>
+                        </div>
+                        <div style="text-align:center" class="card-body p-2">
+                            
+                            <p style="font-size:28px" class="card-text">{{$count_posts}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 pb-4">
+                    <div class="card text-dark bg-light shadow-lg">
+                        <div style="text-align:center" class="card-header">
+                            <p class="card-text">Distance totale parcourue</p>
+                        </div>
+                        <div style="text-align:center" class="card-body p-2">
+                            <p style="font-size:28px" class="card-text">{{round($sum_distance,0)}} km</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 pb-3">
+                    <div class="card text-dark bg-light shadow-lg">
+                        <div style="text-align:center" class="card-header">
+                            <p class="card-text">Durée totale de randonnée</p>
+                        </div>
+                        <div style="text-align:center" class="card-body p-2">
+                            <p style="font-size:28px" class="card-text">x jours</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 pb-4">
-            <div class="card h-100 text-dark bg-light shadow-lg">
-                <div style="text-align:center" class="card-header">
-                    <p class="card-text mb-0">Distance totale parcourue</p>
-                </div>
-                <div style="text-align:center" class="card-body">
-                    <p style="font-size:28px" class="card-text">{{round($sum_distance,0)}} km</p>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <h1>Dernières randonnées</h1>

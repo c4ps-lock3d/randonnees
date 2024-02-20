@@ -27,17 +27,27 @@ class BlogController extends Controller
 {
     // Welcome
     public function welcome(Gpx $postgpx):RedirectResponse | View{
+        
         $list_areas = Gpx::join('cat_areas', 'gpxes.cat_area_id', '=', 'cat_areas.id')->select('cat_areas.name')->distinct()->get()->pluck('name');
         foreach($list_areas as $list_area){
             $areas_count[] = Gpx::join('cat_areas', 'gpxes.cat_area_id', '=', 'cat_areas.id')->select('cat_areas.name')->where('cat_areas.name', $list_area)->get()->count();
         }
+
+        $list_difficulties = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->distinct()->get()->pluck('name');
+        foreach($list_difficulties as $list_difficulty){
+            $difficulties_count[] = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->where('cat_difficulties.name', $list_difficulty)->get()->count();
+        }
+
         return view('blog.welcome', [
             'postgpx' => $postgpx,
             'last_posts' => Gpx::get()->sortByDesc("date")->skip(0)->take(3),
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
+            'sum_duration' => 0,
             'list_areas' => $list_areas,
-            'count_list_areas' => $areas_count
+            'count_list_areas' => $areas_count,
+            'list_difficulties' => $list_difficulties,
+            'count_list_difficulties' => $difficulties_count,
         ]);
     }
     
