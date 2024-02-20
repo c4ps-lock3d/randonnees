@@ -81,7 +81,8 @@
                                         '#FFB3C2',
                                         '#A0D0F6',
                                         '#FFE6AD',        
-                                        '#ABDFDF'
+                                        '#ABDFDF',
+                                        '#FFCFA3'
                                 ],
                                 hoverOffset: 4
                             }],
