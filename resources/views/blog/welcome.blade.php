@@ -65,10 +65,12 @@
                 <div>
                     <canvas id="myChartDifficulty"></canvas>
                 </div>
+
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script type="text/javascript">
-                    var varChartCatDifficulty = {{ Js::from($list_difficulties) }};
-                    var varChartCatDifficultyCount = {{ Js::from($count_list_difficulties) }};
+
+                    var varChartCatDifficulty = {{ Js::from($list_difficulties) }}
+                    var varChartCatDifficultyCount = {{ Js::from($count_list_difficulties) }}
                     const ctxDifficulty = document.getElementById('myChartDifficulty');
                     new Chart(ctxDifficulty, {
                         type: 'doughnut',

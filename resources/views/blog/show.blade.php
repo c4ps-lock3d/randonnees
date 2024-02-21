@@ -50,20 +50,20 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script type="text/javascript">
-  var varChartDis = {{ Js::from($chartDis) }};
-  var varChartEle = {{ Js::from($chartEle) }};
+  
+  var chartDis = {!! json_encode($chartDis->toArray()) !!};
+  var chartEle = {!! json_encode($chartEle->toArray()) !!};
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: varChartDis,
+      labels: chartDis,
       display: true,
       datasets: [{
         label: 'Altitude',
-        data: varChartEle,
+        data: chartEle,
         borderWidth: 0,
         fill: true,
         pointStyle: 'circle',
