@@ -34,9 +34,7 @@
                                         '#ABDFDF'
                                 ],
                                 hoverOffset: 4
-                            }],
-
-                            
+                            }],                  
                         },
                         options: {
                                     responsive: true,
@@ -87,9 +85,7 @@
                                         '#FFCFA3'
                                 ],
                                 hoverOffset: 4
-                            }],
-
-                            
+                            }],                           
                         },
                         options: {
                                     responsive: true,
