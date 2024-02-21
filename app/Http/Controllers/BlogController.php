@@ -95,9 +95,9 @@ class BlogController extends Controller
                 $querybuilder->where('tags.name', "Plat");
             });
         }
-        if($request->has('Ballade')){
+        if($request->has('Balade')){
             $query->orWhereHas('tags', function($querybuilder) {
-                $querybuilder->where('tags.name', "Ballade");
+                $querybuilder->where('tags.name', "Balade");
             });
         }
         if($request->has('Vaud')){
@@ -145,11 +145,8 @@ class BlogController extends Controller
         if($request->has('moyen')){
             $query->Where('cat_dogfriendly_id', 2);
         }
-        if($request->has('difficile')){
+        if($request->has('déconseillé')){
             $query->Where('cat_dogfriendly_id', 3);
-        }
-        if($request->has('impossible')){
-            $query->Where('cat_dogfriendly_id', 4);
         }
         if($request->has('Boucle')){
             $query->Where('cat_layout_id', 1);
