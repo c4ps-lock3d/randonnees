@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('traces', function (Blueprint $table) {
             $table->id();
-            $table->string('lat')->nullable();
-            $table->string('lon')->nullable();
-            $table->string('ele')->nullable();
-            $table->string('dis')->nullable();
-            $table->string('tim')->nullable();
-            $table->string('sid')->nullable();
+            $table->decimal('lat', 8, 6);
+            $table->decimal('lon', 9, 6);
+            $table->float('ele', 5, 1);
+            $table->float('dis', 3, 1)->nullable();
+            $table->integer('sid')->index('sid');
+            $table->timestamp('tim')->nullable();
             $table->timestamps();
         });
     }

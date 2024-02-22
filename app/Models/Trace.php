@@ -14,8 +14,8 @@ class Trace extends Model
         'lon',
         'ele',
         'gpx_id',
-        'dis',
         'tim',
+        'dis',
         'sid',
     ];
 

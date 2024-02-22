@@ -310,7 +310,7 @@ class BlogController extends Controller
             $trace = Trace::create([
                 'lat' => $trakpt['lat'],
                 'lon' => $trakpt['lon'],
-                'ele' => round((int)$trakpt->ele,0),
+                'ele' => $trakpt->ele,
                 'gpx_id' => $postgpx->id,
                 'sid' => $trakpt->extensions->routepoint_id
             ]);
@@ -323,13 +323,13 @@ class BlogController extends Controller
         for($i = 1; $i <= count($longitude)-2; $i++){
             $theta = $longitude[$i] - $longitude[$i+1]; 
             $distance  = $distance + ((rad2deg(acos((sin(deg2rad((float)$latitude[$i])) * sin(deg2rad((float)$latitude[$i+1]))) + (cos(deg2rad((float)$latitude[$i])) * cos(deg2rad((float)$latitude[$i+1])) * cos(deg2rad((float)$theta))))))* 60 * 1.1515 * 1.609344); 
-            Trace::where('sid', $sid[$i])->update([
-                'dis' => round($distance,1)
+            Trace::where('sid', $sid[$i])->where('gpx_id', $postgpx->id)->update([
+                'dis' => $distance
             ]);
         }
 
-        // $eleMax = Trace::where('gpx_id', $postgpx->id)->max('ele');
-        // Gpx::where('id', $postgpx->id)->update(['eleMax' => round($eleMax,0)]);
+        $eleMax = Trace::where('gpx_id', $postgpx->id)->max('ele');
+        Gpx::where('id', $postgpx->id)->update(['eleMax' => round($eleMax,0)]);
 
         return redirect()->route('blog.edit',[
             'postgpx' => $postgpx,
