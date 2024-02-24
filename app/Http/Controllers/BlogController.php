@@ -317,10 +317,11 @@ class BlogController extends Controller
             $longitude[] = $trakpt['lon'];
             $latitude[] =  $trakpt['lat'];
             $sid[] =  $trakpt->extensions->routepoint_id;
+            $gpx_id[] = $postgpx->id;
         }
 
         $distance = 0;
-        for($i = 1; $i <= count($longitude)-2; $i++){
+        for($i = 0; $i < count($gpx_id)-1; $i++){
             $theta = $longitude[$i] - $longitude[$i+1]; 
             $distance  = $distance + ((rad2deg(acos((sin(deg2rad((float)$latitude[$i])) * sin(deg2rad((float)$latitude[$i+1]))) + (cos(deg2rad((float)$latitude[$i])) * cos(deg2rad((float)$latitude[$i+1])) * cos(deg2rad((float)$theta))))))* 60 * 1.1515 * 1.609344); 
             Trace::where('sid', $sid[$i])->where('gpx_id', $postgpx->id)->update([
