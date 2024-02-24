@@ -10,7 +10,7 @@
 <div class="row">
 
 <div class="col-6">
-        <p>Date : {{$postgpx->date = date('d.m.Y')}}</p>
+        <p>Date : {{date("d.m.Y", strtotime($postgpx->date))}}</p>
         <p>Région : {{$postgpx->cat_area->name}}</p>
         <p>Type de parcours : {{$postgpx->cat_layout->name}}</p>
         <p>Type de randonnée :
