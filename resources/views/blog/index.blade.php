@@ -138,7 +138,7 @@
                     <div class='card-img-overlay'>
                     <div class='float-left'>
                         <div>
-                            <h6 id='newsDate' class='card-text'><small>{{$postgpx->date}} - {{$postgpx->cat_area->name}}</small></h6>
+                            <h6 id='newsDate' class='card-text'><small>{{$postgpx->date = date('d.m.Y')}} - {{$postgpx->cat_area->name}}</small></h6>
                         </div>
                     </div>
                     </div>

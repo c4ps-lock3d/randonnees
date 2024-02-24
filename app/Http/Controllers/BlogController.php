@@ -282,7 +282,8 @@ class BlogController extends Controller
         
         $eleStart = round((int) $gpx->wpt->ele,0);
         $title = $gpx->metadata->name;
-        $date = date(substr($gpx->metadata->time,0,10));
+        //$date = date(substr($gpx->metadata->time,0,10));
+        $date = date("Y-m-d", strtotime($gpx->metadata->time));
     
         foreach ($gpx->wpt as $pt) {
             foreach ($pt->extensions as $ex) {     
