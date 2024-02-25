@@ -3,7 +3,7 @@
 @section('title', 'Bienvenue')
 
 @section('content')   
-    <h2 style="margin-bottom:10px;margin-top:10px;color:#3F5E44"><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr style="height: 3px;background: #3F5E44; border-radius: 7px 7px 7px 7px;">
+    <h2 style="margin-bottom:15px;margin-top:15px;color:#3F5E44;text-align:center"><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr style="height: 3px;background: #3F5E44; border-radius: 7px 7px 7px 7px;">
     <div class="row">
         <div class="col-lg-4 pb-4">
             <div class="card h-100 text-dark bg-light shadow-lg">
