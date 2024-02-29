@@ -3,9 +3,9 @@
 @section('title', 'Bienvenue')
 
 @section('content')   
-    <h2 style="margin-bottom:15px;margin-top:15px;color:#3F5E44;text-align:center"><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr style="height: 3px;background: #3F5E44; border-radius: 7px 7px 7px 7px;">
+    <h2 style="margin-bottom:15px;margin-top:15px;color:#3F5E44;text-align:center"><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr style="height: 3px;background: #3F5E44; border-radius: 7px 7px 7px 7px;margin-bottom:25px">
     <div class="row">
-        <div class="col-lg-4 pb-4">
+        <div class="col-lg-4 pb-3">
             <div class="card h-100 text-dark bg-light shadow-lg">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Nombre de randonnées par régions</p>
@@ -13,17 +13,17 @@
                 <div style="text-align:center" class="card-body">
                 
                 <div>
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChartArea"></canvas>
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script type="text/javascript">
-                    var varChartCatArea = {{ Js::from($list_areas) }};
-                    var varChartCatAreaCount = {{ Js::from($count_list_areas) }};
-                    const ctx = document.getElementById('myChart');
-                    new Chart(ctx, {
+                    var varChartCatArea = <?php echo json_encode($list_areas, JSON_HEX_TAG); ?>;
+                    var varChartCatAreaCount = <?php echo json_encode($count_list_areas, JSON_HEX_TAG); ?>;
+                    const ctxArea = document.getElementById('myChartArea');
+                    new Chart(ctxArea, {
                         type: 'doughnut',
                         data: {
-                            labels: varChartCatArea,
+                            labels: varChartCatArea,    
                             datasets: [{
                                 label: 'Nombre de randonnées',
                                 data: varChartCatAreaCount,
@@ -40,11 +40,15 @@
                             }],                  
                         },
                         options: {
-                                    responsive: true,
+                                    responsive: false,
                                     plugins: {
                                         legend: {
                                             display: true,
                                             position: 'bottom',
+                                            labels: {
+                                                pointStyle: 'rect',
+                                                usePointStyle: true,
+                                            },
                                         },
                                         title: {
                                             display: false,
@@ -57,8 +61,8 @@
             </div>    
             </div>
         </div>
-        <div class="col-lg-4 pb-4">
-            <div class="card h-100 text-dark bg-light shadow-lg">
+        <div class="col-lg-4 pb-3">
+            <div class="card h-100 text-dark bg-light shadow-lg p-0">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Nombre de randonnées par échelle de difficutée</p>
                 </div>
@@ -70,8 +74,8 @@
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script type="text/javascript">
 
-                    var varChartCatDifficulty = {{ Js::from($list_difficulties) }}
-                    var varChartCatDifficultyCount = {{ Js::from($count_list_difficulties) }}
+                    var varChartCatDifficulty = <?php echo json_encode($list_difficulties, JSON_HEX_TAG); ?>;
+                    var varChartCatDifficultyCount = <?php echo json_encode($count_list_difficulties, JSON_HEX_TAG); ?>;
                     const ctxDifficulty = document.getElementById('myChartDifficulty');
                     new Chart(ctxDifficulty, {
                         type: 'doughnut',
@@ -81,27 +85,35 @@
                                 label: 'Nombre de randonnées',
                                 data: varChartCatDifficultyCount,
                                 backgroundColor: [
-                                    'rgba(255, 99, 132, 0.5)',
-                                    'rgba(255, 159, 64, 0.5)',
-                                    'rgba(255, 205, 86, 0.5)',
-                                    'rgba(75, 192, 192, 0.5)',
                                     'rgba(54, 162, 235, 0.5)',
-                                    'rgba(153, 102, 255, 0.5)',
-                                    'rgba(201, 203, 207, 0.5)'
+                                    'rgba(75, 192, 192, 0.5)',
+                                    'rgba(255, 205, 86, 0.5)',
+                                    'rgba(255, 159, 64, 0.5)',
+                                    'rgba(255, 99, 132, 0.5)',
                                 ],
                                 hoverOffset: 4
                             }],                           
                         },
                         options: {
-                                    responsive: true,
+                                    responsive: false,
                                     plugins: {
                                         legend: {
                                             display: true,
                                             position: 'bottom',
+                                            labels: {
+                                                pointStyle: 'rect',
+                                                usePointStyle: true,
+                                          
+                                            },
                                         },
                                         title: {
                                             display: false,
                                             text: 'Chart.js Doughnut Chart'
+                                        }
+                                    },
+                                    layout: {
+                                        padding: {
+                                            bottom:20
                                         }
                                     }
                                 },
@@ -118,8 +130,7 @@
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Nombre de randonnées enregistrées</p>
                         </div>
-                        <div style="text-align:center" class="card-body p-2">
-                            
+                        <div style="text-align:center;padding:0.66rem" class="card-body">     
                             <p style="font-size:28px" class="card-text">{{$count_posts}}</p>
                         </div>
                     </div>
@@ -131,20 +142,20 @@
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Distance totale parcourue</p>
                         </div>
-                        <div style="text-align:center" class="card-body p-2">
+                        <div style="text-align:center;padding:0.66rem" class="card-body">
                             <p style="font-size:28px" class="card-text">{{round($sum_distance,0)}} km</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 pb-3">
-                    <div class="d-none card text-dark bg-light shadow-lg">
+                <div class="col-lg-12">
+                    <div class="card text-dark bg-light shadow-lg">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Durée totale de randonnée</p>
                         </div>
-                        <div style="text-align:center" class="card-body p-2">
-                            <p style="font-size:28px" class="card-text">x jours</p>
+                        <div style="text-align:center;padding:0.66rem"" class="card-body">
+                            <p style="font-size:28px" class="card-text">{{round($sum_duration/3600),0}} heures</p>
                         </div>
                     </div>
                 </div>

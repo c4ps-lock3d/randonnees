@@ -43,13 +43,13 @@ class BlogController extends Controller
             'last_posts' => Gpx::get()->sortByDesc("date")->skip(0)->take(3),
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
-            'sum_duration' => 0,
+            'sum_duration' => Gpx::sum(Gpx::raw("TIME_TO_SEC(duration)")),
             'list_areas' => $list_areas,
             'count_list_areas' => $areas_count,
             'list_difficulties' => $list_difficulties,
             'count_list_difficulties' => $difficulties_count,
         ]);
-    }
+    }   
     
     // Afficher et trier
     public function index(Request $request, Gpx $query): View{
@@ -112,7 +112,7 @@ class BlogController extends Controller
         if($request->has('Bern')){
             $query->Where('cat_area_id', 4);
         }
-        if($request->has('Jura')){
+        if($request->has('Neuchâtel')){
             $query->Where('cat_area_id', 5);
         }
         if($request->has('Grisons')){

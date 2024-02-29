@@ -26,7 +26,7 @@
         <p>Dénivelé négatif : {{$postgpx->eleDsc}} m</p>
         <p>Altitude de départ : {{$postgpx->eleStart}} m</p>
         <p>Altitude maximale : {{$postgpx->eleMax}} m</p>
-        <p>Durée : {{$postgpx->duration}}</p>
+        <p>Durée : {{date("H:i", strtotime($postgpx->duration))}}</p>
         <p>Difficulté : {{$postgpx->cat_difficulty->name}}</p>
         <p>Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}</p>
         @if (empty($postgpx->google))
@@ -52,12 +52,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
   
-  var chartDis = {!! json_encode($chartDis->toArray()) !!};
-  var chartEle = {!! json_encode($chartEle->toArray()) !!};
+  var chartDis = <?php echo json_encode($chartDis, JSON_HEX_TAG); ?>;
+  var chartEle = <?php echo json_encode($chartEle, JSON_HEX_TAG); ?>;
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: chartDis,
       display: true,
