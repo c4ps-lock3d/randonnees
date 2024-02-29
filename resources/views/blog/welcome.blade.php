@@ -152,7 +152,7 @@
                 <div class="col-lg-12">
                     <div class="card text-dark bg-light shadow-lg">
                         <div style="text-align:center" class="card-header">
-                            <p class="card-text">Durée totale de randonnée</p>
+                            <p class="card-text">Durée totale parcourue</p>
                         </div>
                         <div style="text-align:center;padding:0.66rem"" class="card-body">
                             <p style="font-size:28px" class="card-text">{{round($sum_duration/3600),0}} heures</p>
