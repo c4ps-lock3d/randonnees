@@ -155,7 +155,7 @@
                             </div>
                             <div class="col-6 pb-3">
                                 <p class="card-text">
-                                    <i class="far fa-clock"></i>&nbsp;&nbsp;{{$postgpx->duration}}
+                                    <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
                                 </p>
                                 <p class="card-text">
                                     <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
