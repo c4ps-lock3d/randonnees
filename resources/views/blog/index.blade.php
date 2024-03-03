@@ -123,8 +123,6 @@
             </form>
 
 
-
-
     <div class="row">
         @foreach($gpxes as $postgpx)
         <div class="col-xl-4 col-lg-6 col-md-6 pb-4">

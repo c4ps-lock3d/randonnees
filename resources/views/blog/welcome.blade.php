@@ -5,12 +5,12 @@
 @section('content')   
     <h2 style="margin-bottom:15px;margin-top:15px;color:#3F5E44;text-align:left"><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr style="height: 3px;background: #3F5E44; border-radius: 7px 7px 7px 7px;margin-bottom:25px">
     <div class="row">
-        <div class="col-lg-4 pb-3">
+        <div class="col-xl-4 col-lg-4 col-md-6 pb-3">
             <div class="card h-100 text-dark bg-light shadow-lg">
                 <div style="text-align:center" class="card-header">
-                    <p class="card-text">Nombre de randonnées par régions</p>
+                    <p class="card-text">Randonnées par régions</p>
                 </div>
-                <div style="text-align:center" class="card-body">
+                <div style="text-align:center" class="mx-auto card-body">
                 
                 <div>
                     <canvas id="myChartArea"></canvas>
@@ -61,12 +61,12 @@
             </div>    
             </div>
         </div>
-        <div class="col-lg-4 pb-3">
+        <div class="col-xl-4 col-lg-4 col-md-6 pb-3">
             <div class="card h-100 text-dark bg-light shadow-lg p-0">
                 <div style="text-align:center" class="card-header">
-                    <p class="card-text">Nombre de randonnées par échelle de difficutée</p>
+                    <p class="card-text">Randonnées par échelle de difficutée</p>
                 </div>
-                <div style="text-align:center" class="card-body">
+                <div style="text-align:center" class="mx-auto card-body">
                 <div>
                     <canvas id="myChartDifficulty"></canvas>
                 </div>
@@ -122,10 +122,10 @@
             </div>    
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-12">
 
             <div class="row">
-                <div class="col-lg-12 pb-4">
+                <div class="col-lg-12 col-md-12 pb-4">
                     <div class="card text-dark bg-light shadow-lg">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Nombre de randonnées enregistrées</p>
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 pb-4">
+                <div class="col-lg-12 col-md-12 pb-4">
                     <div class="card text-dark bg-light shadow-lg">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Distance totale parcourue</p>
@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-md-12">
                     <div class="card text-dark bg-light shadow-lg">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Durée totale parcourue</p>
