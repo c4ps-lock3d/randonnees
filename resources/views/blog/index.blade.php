@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <form class="" action="" method="get">
                         <div class="row">
-                            <div class="btn-group btn-group-sm col-sm pb-1 pr-2 pl-2" role="group">
+                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tag</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($tags as $tag)
@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn-group btn-group-sm col-sm pb-1 pr-2 pl-2" role="group">
+                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Région</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_areas as $cat_area)
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn-group btn-group-sm col-sm pb-1 pr-2 pl-2" role="group">
+                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Difficultée</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_difficulties as $cat_difficulty)
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn-group btn-group-sm col-sm pb-1 pr-2 pl-2 role="group">
+                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Difficulté chien</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_dogfriendlies as $cat_dogfriendly)
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn-group btn-group-sm col-sm pb-1 pr-2 pl-2" role="group">
+                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tracé</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_layouts as $cat_layout)
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn-group btn-group-sm col-sm-2 pb-1 pr-2 pl-2" href="{{ route('blog.index') }}" style="text-decoration:none"><button class="btn btn-sm btn-secondary" type="button" name="submit"><i class="fas fa-eraser"></i>&nbsp;&nbsp;Réinitialiser</button></a>
+                            <a class="btn-group btn-group-sm col-sm-2 pb-1" href="{{ route('blog.index') }}" style="text-decoration:none"><button class="btn btn-sm btn-secondary" type="button" name="submit"><i class="fas fa-eraser"></i>&nbsp;&nbsp;Réinitialiser</button></a>
                         </div>
                         <!-- <input class="form-check-input" name="tagSommet" type="checkbox" id="tagSommet" value="tagSommet" onchange="document.getElementById('filter').submit()" @if(request()->tagSommet) checked @endif> -->                      
                     </div>
