@@ -3,7 +3,7 @@
 @section('title', 'Bienvenue')
 
 @section('content')   
-    <h2 style="margin-bottom:15px;margin-top:15px;text-align:left"><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr>
+    <h2><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr>
     <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-6 pb-3">
             <div class="card h-100 text-light bg-dark shadow-lg">
@@ -28,15 +28,16 @@
                                 label: 'Nombre de randonnées',
                                 data: varChartCatAreaCount,
                                 backgroundColor: [
-                                    'rgba(255, 99, 132, 0.5)',
-                                    'rgba(255, 159, 64, 0.5)',
-                                    'rgba(255, 205, 86, 0.5)',
-                                    'rgba(75, 192, 192, 0.5)',
-                                    'rgba(54, 162, 235, 0.5)',
-                                    'rgba(153, 102, 255, 0.5)',
-                                    'rgba(201, 203, 207, 0.5)'
+                                    'rgba(255, 99, 132, 0.8)',
+                                    'rgba(255, 159, 64, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)',
+                                    'rgba(75, 192, 192, 0.8)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(153, 102, 255, 0.8)',
+                                    'rgba(201, 203, 207, 0.8)'
                                 ],
-                                hoverOffset: 4
+                                hoverOffset: 4,
+                                borderWidth: 1,
                             }],                  
                         },
                         options: {
@@ -48,6 +49,8 @@
                                             labels: {
                                                 pointStyle: 'rect',
                                                 usePointStyle: true,
+                                                color: '#F8F9FA',
+                                                padding:15
                                             },
                                         },
                                         title: {
@@ -85,13 +88,14 @@
                                 label: 'Nombre de randonnées',
                                 data: varChartCatDifficultyCount,
                                 backgroundColor: [
-                                    'rgba(54, 162, 235, 0.5)',
-                                    'rgba(75, 192, 192, 0.5)',
-                                    'rgba(255, 205, 86, 0.5)',
-                                    'rgba(255, 159, 64, 0.5)',
-                                    'rgba(255, 99, 132, 0.5)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(75, 192, 192, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)',
+                                    'rgba(255, 159, 64, 0.8)',
+                                    'rgba(255, 99, 132, 0.8)',
                                 ],
-                                hoverOffset: 4
+                                hoverOffset: 4,
+                                borderWidth: 1,
                             }],                           
                         },
                         options: {
@@ -103,8 +107,10 @@
                                             labels: {
                                                 pointStyle: 'rect',
                                                 usePointStyle: true,
-                                          
+                                                color: '#F8F9FA',
+                                                padding:20
                                             },
+
                                         },
                                         title: {
                                             display: false,
@@ -115,7 +121,7 @@
                                         padding: {
                                             bottom:20
                                         }
-                                    }
+                                    },
                                 },
                     });
                 </script>
@@ -154,7 +160,7 @@
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Durée totale parcourue</p>
                         </div>
-                        <div style="text-align:center;padding:0.66rem"" class="card-body">
+                        <div style="text-align:center;padding:0.65rem"" class="card-body">
                             <p style="font-size:28px" class="card-text">{{round($sum_duration/3600),0}} heures</p>
                         </div>
                     </div>

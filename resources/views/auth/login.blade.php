@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <h1>Login</h1>
+    <h2>Login</h2><hr>
     <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 pb-4 mx-auto">
             <div class="card h-100 text-light bg-dark shadow-lg">
@@ -24,7 +24,7 @@
                                 {{ $message }}
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-dark">Se connecter</button>
+                        <button type="submit" class="btn btn-secondary">Se connecter</button>
                     </form>
                 </div>
             </div>
