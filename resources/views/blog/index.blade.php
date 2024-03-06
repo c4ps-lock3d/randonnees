@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 pt-4 pb-4">
-        <div class="card h-100 text-dark bg-light">
+        <div class="card h-100 text-light bg-dark">
                 <div class="card-header d-flex justify-content-between">
                     <div>Filtres</div> 
                 </div>
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn-group btn-group-sm col-sm mb-1" href="{{ route('blog.index') }}"><button class="btn btn-sm btn-dark" type="button" name="submit"><i class="fas fa-eraser"></i>&nbsp;&nbsp;Réinitialiser</button></a>
+                            <a class="btn-group btn-group-sm col-sm mb-1" href="{{ route('blog.index') }}"><button class="btn btn-sm btn-secondary" type="button" name="submit"><i class="fas fa-eraser"></i>&nbsp;&nbsp;Réinitialiser</button></a>
                         </div>
                         <!-- <input class="form-check-input" name="tagSommet" type="checkbox" id="tagSommet" value="tagSommet" onchange="document.getElementById('filter').submit()" @if(request()->tagSommet) checked @endif> -->                      
                     </div>
@@ -126,7 +126,7 @@
     <div class="row">
         @foreach($gpxes as $postgpx)
         <div class="col-xl-4 col-lg-6 col-md-6 pb-4">
-            <div class="card h-100 text-dark bg-light shadow-lg">
+            <div class="card h-100 text-light bg-dark shadow-lg">
                 <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
                     @if($postgpx->image)
                         <img src="storage/{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">

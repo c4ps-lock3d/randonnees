@@ -2,8 +2,8 @@ body{
     font-family: 'Dosis';
     /*background-color: #1d2124;*/
     /*background-color: #5CB18D;*/
-    background-color: #C1DBB3;
-    color: #193f25;
+    background-color: #3c556f;
+    color: #669ace;
     overflow-y: scroll;
     /* background-image: url("/img/img.jpg");
     background-size: 100%;
@@ -12,12 +12,12 @@ body{
 
 a{
     text-decoration:none;
-    color: #1d2124;
+    color: #F8F9FA;
 }
 
 a:hover{
     text-decoration:underline;
-    color: #000000;
+    color: #F8F9FA;
 }
 
 h1{
@@ -25,14 +25,29 @@ h1{
     margin-bottom:30px;
 }
 
+h2{
+    color: #669ace;
+}
+
+nav{
+    background-color:#273542;
+}
+
 h5{
     font-size:18px;
+}
+
+hr{
+    background:#669ace;
+    height:3px;
+    border-radius:7px 7px 7px 7px;
+    margin-bottom:25px;
 }
 
 #newsDate{
     border-radius:0rem 0rem 0.2rem 0.2rem;
     margin-top:-20px;
     padding:5px;
-    background-color:#F8F9FA;
+    background-color: #343A40;
     opacity:1;
 }

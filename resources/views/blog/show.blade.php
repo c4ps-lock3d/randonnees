@@ -8,45 +8,65 @@
 @endauth
 <h1>{{$postgpx->title}}</h1>
 <div class="row">
+  <div class="col-6">
+          <p>Date : {{date("d.m.Y", strtotime($postgpx->date))}}</p>
+          <p>Région : {{$postgpx->cat_area->name}}</p>
+          <p>Type de parcours : {{$postgpx->cat_layout->name}}</p>
+          <p>Type de randonnée :
+            @foreach($postgpx->tags as $tag)
+              <span class="badge bg-secondary text-light">
+                {{$tag->name}}
+              </span>
+            @endforeach
+          </p>
+          <p>Distance : {{$postgpx->distance}} km</p>
+          <p>Distance effort : {{$postgpx->distEff}} km</p>
+          <p>Dénivelé positif : {{$postgpx->eleAsc}} m</p>
+          <p>Dénivelé négatif : {{$postgpx->eleDsc}} m</p>
+          <p>Altitude de départ : {{$postgpx->eleStart}} m</p>
+          <p>Altitude maximale : {{$postgpx->eleMax}} m</p>
+          <p>Durée : {{date("H:i", strtotime($postgpx->duration))}}</p>
+          <p>Difficulté : {{$postgpx->cat_difficulty->name}}</p>
+          <p>Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}</p>
+          @if (empty($postgpx->google))
+          @else
+            <p>Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a></p>
+          @endif
+          @if (empty($postgpx->hut))
+          @else
+            <p>Cabane : {{$postgpx->hut}}</p>
+          @endif
+          @if (empty($postgpx->comments))
+          @else
+            <p>Remarques : {{$postgpx->comments}}</p>
+          @endif  
+  </div>
+  <div class="col-6">
+    <canvas id="myChart"></canvas>
+  </div>
+  <div class="col-12">
+    <div id="map"></div>
+    <script>
+      import './style.css';
+      import Map from 'ol/Map.js';
+      import OSM from 'ol/source/OSM.js';
+      import TileLayer from 'ol/layer/Tile.js';
+      import View from 'ol/View.js';
 
-<div class="col-6">
-        <p>Date : {{date("d.m.Y", strtotime($postgpx->date))}}</p>
-        <p>Région : {{$postgpx->cat_area->name}}</p>
-        <p>Type de parcours : {{$postgpx->cat_layout->name}}</p>
-        <p>Type de randonnée :
-          @foreach($postgpx->tags as $tag)
-            <span class="badge bg-secondary text-light">
-              {{$tag->name}}
-            </span>
-          @endforeach
-        </p>
-        <p>Distance : {{$postgpx->distance}} km</p>
-        <p>Distance effort : {{$postgpx->distEff}} km</p>
-        <p>Dénivelé positif : {{$postgpx->eleAsc}} m</p>
-        <p>Dénivelé négatif : {{$postgpx->eleDsc}} m</p>
-        <p>Altitude de départ : {{$postgpx->eleStart}} m</p>
-        <p>Altitude maximale : {{$postgpx->eleMax}} m</p>
-        <p>Durée : {{date("H:i", strtotime($postgpx->duration))}}</p>
-        <p>Difficulté : {{$postgpx->cat_difficulty->name}}</p>
-        <p>Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}</p>
-        @if (empty($postgpx->google))
-        @else
-          <p>Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a></p>
-        @endif
-        @if (empty($postgpx->hut))
-        @else
-          <p>Cabane : {{$postgpx->hut}}</p>
-        @endif
-        @if (empty($postgpx->comments))
-        @else
-          <p>Remarques : {{$postgpx->comments}}</p>
-        @endif
-        
-</div>
-
-        <div class="col-6">
-            <canvas id="myChart"></canvas>
-        </div>
+      const map = new Map({
+        target: 'map',
+        layers: [
+          new TileLayer({
+            source: new OSM(),
+          }),
+        ],
+        view: new View({
+          center: [0, 0],
+          zoom: 2,
+        }),
+      });
+    </script>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
