@@ -53,14 +53,16 @@
   var map = new L.Map('map', {
     crs: L.CRS.EPSG3857,
     continuousWorld: true,
-    worldCopyJump: false
+    worldCopyJump: false,
+    attributionControl: false,
   });
+
   var url = 'https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg';
   var tilelayer = new L.tileLayer(url);
   var mapLat = <?php echo json_encode($mapLat, JSON_HEX_TAG); ?>;
   var mapLon = <?php echo json_encode($mapLon, JSON_HEX_TAG); ?>;
   map.addLayer(tilelayer);
-  map.setView(L.latLng(46.57591, 7.84956), 8);
+  map.setView(L.latLng(mapLat[1], mapLon[1]), 8);
   var marker = L.marker([mapLat[1], mapLon[1]]).addTo(map);
 </script>
 
