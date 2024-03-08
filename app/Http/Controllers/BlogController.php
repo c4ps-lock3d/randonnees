@@ -195,10 +195,14 @@ class BlogController extends Controller
         }
         $dataEle = Trace::select('ele')->where('gpx_id', $postgpx->id)->get()->pluck('ele');
         $dataDis = Trace::select('dis')->where('gpx_id', $postgpx->id)->get()->pluck('dis');
+        $dataLat = Trace::select('lat')->where('gpx_id', $postgpx->id)->get()->pluck('lat');
+        $dataLon = Trace::select('lon')->where('gpx_id', $postgpx->id)->get()->pluck('lon');
         return view('blog.show',[
             'postgpx' => $postgpx,
             'chartEle' => $dataEle,
             'chartDis' => $dataDis,
+            'mapLat' => $dataLat,
+            'mapLon' => $dataLon,
         ]);
     }
     

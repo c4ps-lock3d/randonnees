@@ -160,7 +160,7 @@
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Durée totale parcourue</p>
                         </div>
-                        <div style="text-align:center;padding:0.65rem"" class="card-body">
+                        <div style="text-align:center;padding:0.68rem"" class="card-body">
                             <p style="font-size:28px" class="card-text">{{round($sum_duration/3600),0}} heures</p>
                         </div>
                     </div>

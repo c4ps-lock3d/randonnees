@@ -8,7 +8,7 @@
     @csrf
         <div class="row">
             <div class="col-xl-6 form-group">
-            <div class="card h-100 text-dark border-success shadow-lg"  style="border-width:2px">
+            <div class="card h-100 text-light bg-dark shadow-lg"  style="border-width:2px">
                 <div class="card-header">Données GPX</div>
                 <div class="card-body">
                 <div class="row">
@@ -114,7 +114,7 @@
             </div>
 
             <div class="col-xl-6 form-group">
-            <div class="card h-100 text-dark border-secondary shadow-lg" style="border-width:2px">
+            <div class="card h-100 text-light bg-dark shadow-lg" style="border-width:2px">
                 <div class="card-header">Données additionelles</div>
                 <div class="card-body">
                 <div class="row">

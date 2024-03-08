@@ -45,29 +45,24 @@
     <canvas id="myChart"></canvas>
   </div>
   <div class="col-12">
-    <div id="map"></div>
-    <script>
-      import './style.css';
-      import Map from 'ol/Map.js';
-      import OSM from 'ol/source/OSM.js';
-      import TileLayer from 'ol/layer/Tile.js';
-      import View from 'ol/View.js';
-
-      const map = new Map({
-        target: 'map',
-        layers: [
-          new TileLayer({
-            source: new OSM(),
-          }),
-        ],
-        view: new View({
-          center: [0, 0],
-          zoom: 2,
-        }),
-      });
-    </script>
+    <div id="map" style="height: 500px"></div>
   </div>
+  
 </div>
+<script>
+  var map = new L.Map('map', {
+    crs: L.CRS.EPSG3857,
+    continuousWorld: true,
+    worldCopyJump: false
+  });
+  var url = 'https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg';
+  var tilelayer = new L.tileLayer(url);
+  var mapLat = <?php echo json_encode($mapLat, JSON_HEX_TAG); ?>;
+  var mapLon = <?php echo json_encode($mapLon, JSON_HEX_TAG); ?>;
+  map.addLayer(tilelayer);
+  map.setView(L.latLng(46.57591, 7.84956), 8);
+  var marker = L.marker([mapLat[1], mapLon[1]]).addTo(map);
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
@@ -88,7 +83,7 @@
         fill: true,
         pointStyle: 'circle',
         pointRadius: 1,
-        pointHoverRadius: 15
+        pointHoverRadius: 15,
       }]
     },
     options: {
@@ -96,22 +91,48 @@
         x: {
           display: true,
           ticks: {
-            stepSize: 0.5
+            color: '#90b6db',
+              autoSkip: true,
+              maxTicksLimit: 12,
+              stepSize: .5
           },
           title: {
             display: true,
             text: 'Distance',
+            color: '#90b6db',
+          },
+          grid: {
+            color: '#4f667d',
+            
           },
         },
         y: {
           beginAtZero: false,
           display: true,
           ticks: {
-            stepSize: 100
+            stepSize: 50,
+            color: '#90b6db',
+          },
+          title: {
+            display: true,
+            text: 'Altitude',
+            color: '#90b6db',
+          },
+          grid: {
+            color: '#4f667d',
           }
         },
-      }
+      },
+      plugins: {
+        legend: {
+          display: false,
+          labels: {
+            color: '#90b6db',
+          },
+        },
+      },
     }
   });
 </script>
+
 @endsection
