@@ -64,6 +64,12 @@
   map.addLayer(tilelayer);
   map.setView(L.latLng(mapLat[1], mapLon[1]), 8);
   var marker = L.marker([mapLat[1], mapLon[1]]).addTo(map);
+  // create a red polyline from an array of LatLng points
+  var latlngs = [
+   maplat, mapLon
+  ];
+
+  var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
