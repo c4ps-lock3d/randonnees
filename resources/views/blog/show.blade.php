@@ -44,7 +44,7 @@
   <div class="col-lg-6 col-md-12">
     <canvas id="myChart"></canvas>
   </div>
-  <div class="col-12">
+  <div class="col-lg-12 col-md-12">
     <div id="map" style="height: 500px"></div>
   </div>
   
