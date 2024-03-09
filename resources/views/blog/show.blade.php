@@ -9,43 +9,43 @@
 <h1>{{$postgpx->title}}</h1>
 <div class="row">
   <div class="col-lg-6 col-md-12">
-          <p>Date : {{date("d.m.Y", strtotime($postgpx->date))}}</p>
-          <p>Région : {{$postgpx->cat_area->name}}</p>
-          <p>Type de parcours : {{$postgpx->cat_layout->name}}</p>
-          <p>Type de randonnée :
+          <p>Date : {{date("d.m.Y", strtotime($postgpx->date))}}
+          Région : {{$postgpx->cat_area->name}}
+          Type de parcours : {{$postgpx->cat_layout->name}}
+          Type de randonnée :
             @foreach($postgpx->tags as $tag)
               <span class="badge bg-secondary text-light">
                 {{$tag->name}}
               </span>
             @endforeach
-          </p>
-          <p>Distance : {{$postgpx->distance}} km</p>
-          <p>Distance effort : {{$postgpx->distEff}} km</p>
-          <p>Dénivelé positif : {{$postgpx->eleAsc}} m</p>
-          <p>Dénivelé négatif : {{$postgpx->eleDsc}} m</p>
-          <p>Altitude de départ : {{$postgpx->eleStart}} m</p>
-          <p>Altitude maximale : {{$postgpx->eleMax}} m</p>
-          <p>Durée : {{date("H:i", strtotime($postgpx->duration))}}</p>
-          <p>Difficulté : {{$postgpx->cat_difficulty->name}}</p>
-          <p>Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}</p>
+          
+          Distance : {{$postgpx->distance}} km
+          Distance effort : {{$postgpx->distEff}} km
+          Dénivelé positif : {{$postgpx->eleAsc}} m
+          Dénivelé négatif : {{$postgpx->eleDsc}} m
+          Altitude de départ : {{$postgpx->eleStart}} m
+          Altitude maximale : {{$postgpx->eleMax}} m
+          Durée : {{date("H:i", strtotime($postgpx->duration))}}
+          Difficulté : {{$postgpx->cat_difficulty->name}}
+          Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}
           @if (empty($postgpx->google))
           @else
-            <p>Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a></p>
+            Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a>
           @endif
           @if (empty($postgpx->hut))
           @else
-            <p>Cabane : {{$postgpx->hut}}</p>
+            Cabane : {{$postgpx->hut}}
           @endif
           @if (empty($postgpx->comments))
           @else
-            <p>Remarques : {{$postgpx->comments}}</p>
+            Remarques : {{$postgpx->comments}}</p>
           @endif  
   </div>
   <div class="col-lg-6 col-md-12">
     <canvas id="myChart"></canvas>
   </div>
   <div class="col-lg-12 col-md-12">
-    <div id="map" style="height: 500px"></div>
+    <div id="map" style="height: 350px"></div>
   </div>
   
 </div>
@@ -61,15 +61,18 @@
   var tilelayer = new L.tileLayer(url);
   var mapLat = <?php echo json_encode($mapLat, JSON_HEX_TAG); ?>;
   var mapLon = <?php echo json_encode($mapLon, JSON_HEX_TAG); ?>;
+  let lengthLatLon = mapLat.length;
   map.addLayer(tilelayer);
   map.setView(L.latLng(mapLat[1], mapLon[1]), 8);
   var marker = L.marker([mapLat[1], mapLon[1]]).addTo(map);
+  
+  const latlngs = [];
+  for (let i = 0; i < lengthLatLon; i++) {
+    latlngs.push([mapLat[i], mapLon[i]]);
+  }
   // create a red polyline from an array of LatLng points
-  var latlngs = [
-   maplat, mapLon
-  ];
-
   var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+  map.fitBounds(polyline.getBounds());
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
