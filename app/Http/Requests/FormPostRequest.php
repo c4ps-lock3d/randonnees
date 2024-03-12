@@ -30,7 +30,7 @@ class FormPostRequest extends FormRequest
             'date' => ['required'],
             'cat_area_id' => ['required', 'exists:cat_areas,id'],
             'cat_layout_id' => ['required', 'exists:cat_layouts,id'],
-            'tags' => ['array', 'exists:tags,id', 'required'],
+            'tags' => ['array', 'exists:tags,id'],
             'cat_difficulty_id' => ['required', 'exists:cat_difficulties,id'],
             'cat_dogfriendly_id' => ['required', 'exists:cat_dogfriendlies,id'],
             'distance' => ['required'],

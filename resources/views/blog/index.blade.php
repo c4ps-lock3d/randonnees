@@ -7,8 +7,9 @@
     <div class="col-12 pt-4 pb-4">
         <div class="card h-100 text-light bg-dark">
                 <div class="card-header d-flex justify-content-between">
-                    <div>Filtres</div> 
-                </div>
+                    <div>Filtres</div>
+                    <div>{{$count_posts}} de {{$count_total_posts}} affichées</div>
+                </div>             
                 <div class="card-body">
                     <form class="" action="" method="get">
                         <div class="row">
@@ -106,7 +107,7 @@
                 <input type="submit" name="triDurationAsc" id="triDurationAsc" class="dropdown-item" href="#" value="Durée croissante"></input>
             </div>
         </div>
-        <div>{{$count_posts}}/{{$count_total_posts}} affichées</div>
+        
         </div>
         <!-- <div class="form-check form-check-inline">
         <input class="form-check-input" type="submit" name="triDateDesc" id="inlineRadio1" value="option1">
@@ -120,8 +121,8 @@
 
         <hr class="mb-3 mt-2">
 
-            </form>
-
+    </form>
+    
 
     <div class="row">
         @foreach($gpxes as $postgpx)

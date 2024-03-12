@@ -337,6 +337,8 @@ class BlogController extends Controller
         $eleMax = Trace::where('gpx_id', $postgpx->id)->max('ele');
         Gpx::where('id', $postgpx->id)->update(['eleMax' => round($eleMax,0)]);
 
+
+
         return redirect()->route('blog.edit',[
             'postgpx' => $postgpx,
             'trace' => $trace,
