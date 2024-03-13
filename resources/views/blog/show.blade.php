@@ -9,11 +9,11 @@
 
 <div class="row">
   <div class="col-lg-5 col-md-12 p-4">
-    @if($postgpx->image)
-    <img src="storage/{{ $postgpx->image }}" class="card-img-top" alt="...">
-    @else
-    <img src="{{url('img/9121424.jpg')}}" class="card-img-top" alt="...">
-    @endif
+  @if($postgpx->image)
+    <img src="storage/{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">
+  @else
+    <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
+  @endif
   </div>
   <div class="col-lg-7 col-md-12 pb-4">
   <h1>{{$postgpx->title}}</h1>
