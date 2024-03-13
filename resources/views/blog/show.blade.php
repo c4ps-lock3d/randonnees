@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-lg-5 col-md-12 p-4">
   @if($postgpx->image)
-    <img src="./storage/{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">
+    <img src="../storage/{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">
   @else
     <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
   @endif
