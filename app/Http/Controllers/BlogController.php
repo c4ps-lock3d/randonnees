@@ -40,7 +40,7 @@ class BlogController extends Controller
 
         return view('blog.welcome', [
             'postgpx' => $postgpx,
-            'last_posts' => Gpx::get()->sortByDesc("date")->skip(0)->take(3),
+            'last_posts' => Gpx::get()->sortByDesc("date")->skip(0)->take(4),
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
             'sum_duration' => Gpx::sum(Gpx::raw("TIME_TO_SEC(duration)")),

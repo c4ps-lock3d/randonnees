@@ -14,7 +14,7 @@ a{
 }
 
 a:hover{
-    text-decoration:underline;
+    text-decoration:none;
     color: #ffffff;
 }
 
@@ -50,10 +50,19 @@ hr{
     margin-bottom:25px;
 }
 
+.card{
+    --bs-bg-opacity: .5;
+}
+
+.navbar{
+    --bs-bg-opacity: .5;
+}
+
 #newsDate{
-    border-radius:0rem 0rem 0.2rem 0.2rem;
-    margin-top:-20px;
+    border-radius:0.2rem 0.2rem 0rem 0rem;
+    margin-top:-16px;
+    margin-left:-16px;
+    margin-right:-16px;
     padding:5px;
-    background-color: #343A40;
-    opacity:1;
+    --bs-bg-opacity: .2;
 }

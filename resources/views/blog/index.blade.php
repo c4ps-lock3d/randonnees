@@ -14,28 +14,32 @@
                     <form class="" action="" method="get">
                         <div class="row">
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tag</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Tag</button>
+                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($tags as $tag)
-                                        <div class="form-check dropdown-item">
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
                                             <input class="form-check-input" name="{{$tag->name}}" type="checkbox" id="{{$tag->name}}" @if(request()->{$tag->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$tag->name}}">{{$tag->name}}</label>
                                         </div>
+                                    </a>
                                     @endforeach
                                     <div class="dropdown-divider"></div>
                                     <div class="form-check dropdown-item">
                                         <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
                                     </div>
-                                </div>
+                                </ul>
                             </div>
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Région</button>
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Région</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_areas as $cat_area)
-                                        <div class="form-check dropdown-item">
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_area->name}}" type="checkbox" id="{{$cat_area->name}}" @if(request()->{$cat_area->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_area->name}}">{{$cat_area->name}}</label>
                                         </div>
+                                    </a>
                                     @endforeach
                                     <div class="dropdown-divider"></div>
                                     <div class="form-check dropdown-item">
@@ -44,13 +48,15 @@
                                 </div>
                             </div>
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Difficultée</button>
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficultée</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_difficulties as $cat_difficulty)
-                                        <div class="form-check dropdown-item">
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_difficulty->name}}" type="checkbox" id="{{$cat_difficulty->name}}" @if(request()->{$cat_difficulty->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_difficulty->name}}">{{$cat_difficulty->name}}</label>
                                         </div>
+                                    </a>
                                     @endforeach
                                     <div class="dropdown-divider"></div>
                                     <div class="form-check dropdown-item">
@@ -59,13 +65,15 @@
                                 </div>
                             </div>
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Difficulté chien</button>
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficulté chien</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_dogfriendlies as $cat_dogfriendly)
-                                        <div class="form-check dropdown-item">
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_dogfriendly->name}}" type="checkbox" id="{{$cat_dogfriendly->name}}" @if(request()->{$cat_dogfriendly->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_dogfriendly->name}}">{{$cat_dogfriendly->name}}</label>
                                         </div>
+                                    </a>
                                     @endforeach
                                     <div class="dropdown-divider"></div>
                                     <div class="form-check dropdown-item">
@@ -74,13 +82,15 @@
                                 </div>
                             </div>
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tracé</button>
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Tracé</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_layouts as $cat_layout)
-                                        <div class="form-check dropdown-item">
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_layout->name}}" type="checkbox" id="{{$cat_layout->name}}" @if(request()->{$cat_layout->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_layout->name}}">{{$cat_layout->name}}</label>
                                         </div>
+                                    </a>
                                     @endforeach
                                     <div class="dropdown-divider"></div>
                                     <div class="form-check dropdown-item">
@@ -97,7 +107,7 @@
         </div>
         <div class="d-flex justify-content-between">
         <div class="dropdown">
-            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration:none">Trier par</a>
+            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration:none">Trier par</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <input type="submit" name="triDateDesc" id="triDateDesc" class="dropdown-item" href="#" value="Date décroissante"></input>
                 <input type="submit" name="triDateAsc" id="triDateAsc" class="dropdown-item" href="#" value="Date croissante"></input>
@@ -126,7 +136,7 @@
 
     <div class="row">
         @foreach($gpxes as $postgpx)
-        <div class="col-xl-4 col-lg-6 col-md-6 pb-4">
+        <div class="col-xxl-3 col-lg-6 col-md-6 pb-4">
             <div class="card h-100 text-light bg-dark shadow-lg">
                 <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
                     @if($postgpx->image)
@@ -134,12 +144,8 @@
                     @else
                         <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
                     @endif
-                    <div class='card-img-overlay'>
-                    <div class='float-left'>
-                        <div>
-                            <h6 id='newsDate' class='card-text'><small>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</small></h6>
-                        </div>
-                    </div>
+                    <div class='card-img-overlay'>               
+                        <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</div>        
                     </div>
                     <div class="card-body pb-1">
                         <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>

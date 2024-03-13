@@ -5,7 +5,7 @@
 @section('content')   
     <h2><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr>
     <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-6 pb-3">
+        <div class="col-xxl-4 col-lg-4 col-md-6 pb-3">
             <div class="card h-100 text-light bg-dark shadow-lg">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Randonnées par régions</p>
@@ -57,8 +57,13 @@
                                             display: false,
                                             text: 'Chart.js Doughnut Chart'
                                         }
+                                    },
+                                    animation: {
+                                        animateScale: true,
+                                        animateRotate: true
                                     }
                                 },
+                                
                     });
                 </script>
             </div>    
@@ -122,6 +127,10 @@
                                             bottom:20
                                         }
                                     },
+                                    animation: {
+                                        animateScale: true,
+                                        animateRotate: true
+                                    }
                                 },
                     });
                 </script>
@@ -173,7 +182,7 @@
     <h1>Dernières randonnées</h1>
     <div class="row">
         @foreach($last_posts as $postgpx)
-        <div class="col-lg-4 pb-4">
+        <div class="col-lg-3 pb-4">
             <div class="card h-100 text-light bg-dark shadow-lg">
             <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
             @if($postgpx->image)
@@ -181,12 +190,8 @@
                 @else
                     <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
                 @endif
-                <div class='card-img-overlay'>
-                <div class='float-left'>
-                    <div>
-                        <h6 id='newsDate' class='card-text'><small>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</small></h6>
-                    </div>
-                </div>
+                <div class='card-img-overlay'>               
+                    <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</div>        
                 </div>
                 <div class="card-body pb-1">
                     <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
