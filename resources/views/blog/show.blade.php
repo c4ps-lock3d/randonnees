@@ -3,65 +3,92 @@
 @section('title', $postgpx->title)
 
 @section('content')
+
 @auth
 <a href="{{ route('blog.edit', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])}}"><button style="margin-top:15px" class="btn btn-dark">Modifier</button></a>
 @endauth
-
 <div class="row">
-  <div class="col-lg-5 col-md-12 p-4">
-  @if($postgpx->image)
-    <img src="../storage/{{ $postgpx->image }}" width="400" class="card-img-top" alt="...">
-  @else
-    <img src="{{url('img/9121424.jpg')}}" width="400" class="card-img-top" alt="...">
-  @endif
+  <div class="col-4 mt-4">
+                <div class="card text-light bg-dark shadow-lg">
+                  <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
+                      @if($postgpx->image)
+                          <img src="storage/{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">
+                      @else
+                          <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
+                      @endif
+                      <div class='card-img-overlay'>               
+                          <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</div>        
+                      </div>
+                      <div class="card-body">
+                          <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="card-text">
+                                      <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;{{$postgpx->distance}} km
+                                  </p>
+                                  <p class="card-text">
+                                      <i class="fas fa-caret-up"></i>&nbsp;&nbsp;{{$postgpx->eleAsc}} m
+                                  </p>
+                              </div>
+                              <div class="col-6 pb-3">
+                                  <p class="card-text">
+                                      <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                  </p>
+                                  <p class="card-text">
+                                      <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                  </p>
+                              </div>
+                          </div>
+                          <canvas id="myChart"></canvas>
+                      </div>
+                      <div class="card-footer">
+                          <div class="d-flex justify-content-between">
+                              <div>
+                                  @if(!$postgpx->tags->isEmpty())
+                                      @foreach($postgpx->tags as $tag)
+                                          <span class="badge bg-secondary text-light">{{$tag->name}}</span>
+                                      @endforeach
+                                  @endif
+                              </div>
+                              <div>
+                                  @if($postgpx->cat_difficulty_id == 1)
+                                      <span><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                  @endif
+                                  @if($postgpx->cat_difficulty_id == 2)
+                                      <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                  @endif
+                                  @if($postgpx->cat_difficulty_id == 3)
+                                      <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                  @endif
+                                  @if($postgpx->cat_difficulty_id == 4)
+                                      <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                  @endif
+                                  @if($postgpx->cat_difficulty_id == 5)
+                                      <span><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                  @endif
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+                </div>
+
   </div>
-  <div class="col-lg-7 col-md-12 pb-4">
-  <h1>{{$postgpx->title}}</h1>
-          <p>Date : {{date("d.m.Y", strtotime($postgpx->date))}}
-          Région : {{$postgpx->cat_area->name}}
-          Type de parcours : {{$postgpx->cat_layout->name}}
-          Type de randonnée :
-            @foreach($postgpx->tags as $tag)
-              <span class="badge bg-secondary text-light">
-                {{$tag->name}}
-              </span>
-            @endforeach
-          
-          Distance : {{$postgpx->distance}} km
-          Distance effort : {{$postgpx->distEff}} km
-          Dénivelé positif : {{$postgpx->eleAsc}} m
-          Dénivelé négatif : {{$postgpx->eleDsc}} m
-          Altitude de départ : {{$postgpx->eleStart}} m
-          Altitude maximale : {{$postgpx->eleMax}} m
-          Durée : {{date("H:i", strtotime($postgpx->duration))}}
-          Difficulté : {{$postgpx->cat_difficulty->name}}
-          Difficultée pour les toutous : {{$postgpx->cat_dogFriendly->name}}
-          @if (empty($postgpx->google))
-          @else
-            Lien Google Maps : <a href='{{$postgpx->google}}' target="_blank">{{$postgpx->google}}</a>
-          @endif
-          @if (empty($postgpx->hut))
-          @else
-            Cabane : {{$postgpx->hut}}
-          @endif
-          @if (empty($postgpx->comments))
-          @else
-            Remarques : {{$postgpx->comments}}</p>
-          @endif  
+  <div class="col-8 mt-4">
+    <div class="card h-100 text-light bg-dark shadow-lg" style="--bs-bg-opacity:0.9">
+      <div id="map" style="height:100%"></div>
+    </div>
   </div>
 
-  <div class="col-lg-5 col-md-12">
-    <canvas id="myChart"></canvas>
-  </div>
-  <div class="col-lg-12 col-md-12">
-    <div id="map" style="height: 350px"></div>
-  </div>
-  <div class="col-lg-12 col-md-12">
-    <div id="output"></div>
-  </div>
 
   
-</div>
+  
+
+<!--   <div class="col-lg-12 col-md-12">
+    <div id="output"></div>
+  </div> -->
+
+  
+
 <script>
   var urlPixelkarteGrau = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg');
   var urlPixelkarteFarbe = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg');
@@ -80,7 +107,7 @@
   };
   var layerControl = L.control.layers(baseMaps).addTo(map);
   L.control.scale({
-    imperial: false
+    imperial: false,
   }).addTo(map);
   var mapLat = <?php echo json_encode($mapLat, JSON_HEX_TAG); ?>;
   var mapLon = <?php echo json_encode($mapLon, JSON_HEX_TAG); ?>;
@@ -132,7 +159,7 @@
       labels: chartDis,
       display: true,
       datasets: [{
-        label: 'Altitude',
+        label: '',
         data: chartEle,
         borderWidth: 0,
         fill: true,
@@ -152,7 +179,7 @@
               stepSize: .5
           },
           title: {
-            display: true,
+            display: false,
             text: 'Distance',
             color: '#90b6db',
           },
@@ -169,7 +196,7 @@
             color: '#90b6db',
           },
           title: {
-            display: true,
+            display: false,
             text: 'Altitude',
             color: '#90b6db',
           },
