@@ -8,13 +8,12 @@
 <a href="{{ route('blog.edit', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])}}"><button style="margin-top:15px" class="btn btn-dark">Modifier</button></a>
 @endauth
 <div class="row">
-  <div class="col-4 mt-4">
-                <div class="card text-light bg-dark shadow-lg">
-                  <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
+  <div class="col-xxl-4 col-md-12 mt-4">
+                <div class="card h-100 text-light bg-dark shadow-lg">
                       @if($postgpx->image)
-                          <img src="../storage/{{ $postgpx->image }}" width="400" height="200" class="card-img-top" alt="...">
+                          <img src="../storage/{{ $postgpx->image }}" width="100%" class="card-img-top" alt="...">
                       @else
-                          <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
+                          <img src="{{url('img/9121424.jpg')}}" width="100%" class="card-img-top" alt="...">
                       @endif
                       <div class='card-img-overlay'>               
                           <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</div>        
@@ -69,13 +68,15 @@
                               </div>
                           </div>
                       </div>
-                  </a>
                 </div>
 
   </div>
-  <div class="col-8 mt-4">
-    <div class="card h-100 text-light bg-dark shadow-lg" style="--bs-bg-opacity:0.9">
-      <div id="map" style="height:100%"></div>
+  <div class="col-xxl-8 col-md-12 mt-4">
+    <div class="card h-100 text-light bg-dark shadow-lg">
+      <div class="card-img-top" id="map" style="height:650px"></div>
+      <div class="card-footer">
+        
+      </div>
     </div>
   </div>
 
