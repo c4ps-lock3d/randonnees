@@ -15,7 +15,60 @@
                     <canvas id="myChartArea"></canvas>
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                
+                <div>
+                    <canvas id="myChartArea"></canvas>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script type="text/javascript">
+                    var varChartCatArea = <?php echo json_encode($list_areas, JSON_HEX_TAG); ?>;
+                    var varChartCatAreaCount = <?php echo json_encode($count_list_areas, JSON_HEX_TAG); ?>;
+                    const ctxArea = document.getElementById('myChartArea');
+                    new Chart(ctxArea, {
+                        type: 'doughnut',
+                        data: {
+                            labels: varChartCatArea,    
+                            datasets: [{
+                                label: 'Nombre de randonnées',
+                                data: varChartCatAreaCount,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.8)',
+                                    'rgba(255, 159, 64, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)',
+                                    'rgba(75, 192, 192, 0.8)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(153, 102, 255, 0.8)',
+                                    'rgba(201, 203, 207, 0.8)'
+                                ],
+                                hoverOffset: 4,
+                                borderWidth: 1,
+                            }],                  
+                        },
+                        options: {
+                                    responsive: false,
+                                    plugins: {
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom',
+                                            labels: {
+                                                pointStyle: 'rect',
+                                                usePointStyle: true,
+                                                color: '#F8F9FA',
+                                                padding:15
+                                            },
+                                        },
+                                        title: {
+                                            display: false,
+                                            text: 'Chart.js Doughnut Chart'
+                                        }
+                                    },
+                                    animation: {
+                                        animateScale: true,
+                                        animateRotate: true
+                                    }
+                                },
+                                
+                    });
+                </script>
             </div>    
             </div>
         </div>
@@ -29,7 +82,65 @@
                     <canvas id="myChartDifficulty"></canvas>
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-               
+                <div>
+                    <canvas id="myChartDifficulty"></canvas>
+                </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script type="text/javascript">
+
+                    var varChartCatDifficulty = <?php echo json_encode($list_difficulties, JSON_HEX_TAG); ?>;
+                    var varChartCatDifficultyCount = <?php echo json_encode($count_list_difficulties, JSON_HEX_TAG); ?>;
+                    const ctxDifficulty = document.getElementById('myChartDifficulty');
+                    new Chart(ctxDifficulty, {
+                        type: 'doughnut',
+                        data: {
+                            labels: varChartCatDifficulty,
+                            datasets: [{
+                                label: 'Nombre de randonnées',
+                                data: varChartCatDifficultyCount,
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(75, 192, 192, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)',
+                                    'rgba(255, 159, 64, 0.8)',
+                                    'rgba(255, 99, 132, 0.8)',
+                                ],
+                                hoverOffset: 4,
+                                borderWidth: 1,
+                            }],                           
+                        },
+                        options: {
+                                    responsive: false,
+                                    plugins: {
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom',
+                                            labels: {
+                                                pointStyle: 'rect',
+                                                usePointStyle: true,
+                                                color: '#F8F9FA',
+                                                padding:20
+                                            },
+
+                                        },
+                                        title: {
+                                            display: false,
+                                            text: 'Chart.js Doughnut Chart'
+                                        }
+                                    },
+                                    layout: {
+                                        padding: {
+                                            bottom:20
+                                        }
+                                    },
+                                    animation: {
+                                        animateScale: true,
+                                        animateRotate: true
+                                    }
+                                },
+                    });
+                </script>
             </div>    
             </div>
         </div>
