@@ -8,7 +8,7 @@
 <a href="{{ route('blog.edit', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id])}}"><button style="margin-top:15px" class="btn btn-dark">Modifier</button></a>
 @endauth
 <div class="row">
-  <div class="col-xxl-4 col-md-12 mt-4">
+  <div class="col-xxl-4 col-lg-4 col-md-12 mt-4">
                 <div class="card h-100 text-light bg-dark shadow-lg">
                       @if($postgpx->image)
                           <img src="../storage/{{ $postgpx->image }}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
@@ -71,7 +71,7 @@
                 </div>
 
   </div>
-  <div class="col-xxl-8 col-md-12 mt-4">
+  <div class="col-xxl-8 col-lg-8 col-md-12 mt-4">
     <div class="card h-100 text-light bg-dark shadow-lg">
       <div class="card-img-top" id="map" style="height:650px"></div>
       <div class="card-footer">
