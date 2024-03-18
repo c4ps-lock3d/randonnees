@@ -180,7 +180,7 @@
     <h1>Dernières randonnées</h1>
     <div class="row">
         @foreach($last_posts as $postgpx)
-        <div class="ol-xxl-3 col-lg-4 col-md-6 pb-4">
+        <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
             <div class="card h-100 text-light bg-dark shadow-lg">
             <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
             @if($postgpx->image)
