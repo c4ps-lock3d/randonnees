@@ -27,15 +27,15 @@ class BlogController extends Controller
     // Welcome
     public function welcome(Gpx $postgpx):RedirectResponse | View{
 
-        // $list_difficulties = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->distinct()->get()->pluck('name');
-        // foreach($list_difficulties as $list_difficulty){
-        //     $difficulties_count[] = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->where('cat_difficulties.name', $list_difficulty)->get()->count();
-        // }
+        $list_difficulties = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->distinct()->get()->pluck('name');
+        foreach($list_difficulties as $list_difficulty){
+            $difficulties_count[] = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->where('cat_difficulties.name', $list_difficulty)->get()->count();
+        }
 
-        // $list_areas = Gpx::select('canton')->distinct()->get()->pluck('canton');
-        // foreach($list_areas as $list_area){
-        //     $areas_count[] = Gpx::select('canton')->where('canton', $list_area)->get()->count();
-        // }
+        $list_areas = Gpx::select('canton')->distinct()->get()->pluck('canton');
+        foreach($list_areas as $list_area){
+            $areas_count[] = Gpx::select('canton')->where('canton', $list_area)->get()->count();
+        }
 
         return view('blog.welcome', [
             'postgpx' => $postgpx,
@@ -43,10 +43,10 @@ class BlogController extends Controller
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
             'sum_duration' => Gpx::sum(Gpx::raw("TIME_TO_SEC(duration)")),
-            // 'list_difficulties' => $list_difficulties,
-            // 'count_list_difficulties' => $difficulties_count,
-            // 'list_areas' => $list_areas,
-            // 'count_list_areas' => $areas_count
+            'list_difficulties' => $list_difficulties,
+            'count_list_difficulties' => $difficulties_count,
+            'list_areas' => $list_areas,
+            'count_list_areas' => $areas_count
         ]);
     }   
     
