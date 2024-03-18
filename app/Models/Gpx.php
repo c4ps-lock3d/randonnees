@@ -20,11 +20,11 @@ class Gpx extends Model
         'eleStart',
         'eleMax',
         'duration',
-        'google',
+        'canton',
+        'commune',
         'hut',
         'comments',
         'gpxpath',
-        'cat_area_id',
         'cat_layout_id',
         'cat_topography_id',
         'cat_difficulty_id',
@@ -32,9 +32,6 @@ class Gpx extends Model
         'image'
     ];
 
-    public function cat_area (){
-        return $this->belongsTo(CatArea::class);
-    }
     public function cat_layout (){
         return $this->belongsTo(CatLayout::class);
     }

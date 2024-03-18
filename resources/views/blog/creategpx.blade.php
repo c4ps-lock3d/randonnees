@@ -13,7 +13,7 @@
                         
                         @csrf
                             <div class="form-group mb-3">
-                                <input class="form-control-file" type="file" id="gpxpath" name="gpxpath">
+                                <input class="form-control" type="file" id="gpxpath" name="gpxpath">
                                 @error("gpxpath")
                                         {{ $message }}
                                 @enderror

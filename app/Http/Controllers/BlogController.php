@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Gpx;
 use App\Models\Tag;
 use App\Models\Trace;
-use App\Models\CatArea;
 use App\Models\CatDifficulty;
 use App\Models\CatDogfriendly;
 use App\Models\CatLayout;
@@ -27,16 +26,16 @@ class BlogController extends Controller
 {
     // Welcome
     public function welcome(Gpx $postgpx):RedirectResponse | View{
-        
-        $list_areas = Gpx::join('cat_areas', 'gpxes.cat_area_id', '=', 'cat_areas.id')->select('cat_areas.name')->distinct()->get()->pluck('name');
-        foreach($list_areas as $list_area){
-            $areas_count[] = Gpx::join('cat_areas', 'gpxes.cat_area_id', '=', 'cat_areas.id')->select('cat_areas.name')->where('cat_areas.name', $list_area)->get()->count();
-        }
 
-        $list_difficulties = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->distinct()->get()->pluck('name');
-        foreach($list_difficulties as $list_difficulty){
-            $difficulties_count[] = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->where('cat_difficulties.name', $list_difficulty)->get()->count();
-        }
+        // $list_difficulties = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->distinct()->get()->pluck('name');
+        // foreach($list_difficulties as $list_difficulty){
+        //     $difficulties_count[] = Gpx::join('cat_difficulties', 'gpxes.cat_difficulty_id', '=', 'cat_difficulties.id')->select('cat_difficulties.name')->where('cat_difficulties.name', $list_difficulty)->get()->count();
+        // }
+
+        // $list_areas = Gpx::select('canton')->distinct()->get()->pluck('canton');
+        // foreach($list_areas as $list_area){
+        //     $areas_count[] = Gpx::select('canton')->where('canton', $list_area)->get()->count();
+        // }
 
         return view('blog.welcome', [
             'postgpx' => $postgpx,
@@ -44,10 +43,10 @@ class BlogController extends Controller
             'count_posts' => Gpx::count(),
             'sum_distance' => Gpx::get()->sum('distance'),
             'sum_duration' => Gpx::sum(Gpx::raw("TIME_TO_SEC(duration)")),
-            'list_areas' => $list_areas,
-            'count_list_areas' => $areas_count,
-            'list_difficulties' => $list_difficulties,
-            'count_list_difficulties' => $difficulties_count,
+            // 'list_difficulties' => $list_difficulties,
+            // 'count_list_difficulties' => $difficulties_count,
+            // 'list_areas' => $list_areas,
+            // 'count_list_areas' => $areas_count
         ]);
     }   
     
@@ -179,7 +178,6 @@ class BlogController extends Controller
         return view('blog.index', [
             'gpxes' => $query->get(),
             'tags' => Tag::select('id', 'name')->get(),
-            'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
@@ -212,7 +210,6 @@ class BlogController extends Controller
         return view('blog.create', [
             'postgpx' => $postgpx,
             'tags' => Tag::select('id', 'name')->get(),
-            'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
@@ -229,10 +226,13 @@ class BlogController extends Controller
 
     // Editer
     public function edit(Gpx $postgpx){
+        $dataLat = Trace::select('lat')->where('gpx_id', $postgpx->id)->get()->pluck('lat');
+        $dataLon = Trace::select('lon')->where('gpx_id', $postgpx->id)->get()->pluck('lon');
         return view('blog.edit',[
             'postgpx' => $postgpx,
+            'mapLat' => $dataLat,
+            'mapLon' => $dataLon,
             'tags' => Tag::select('id', 'name')->get(),
-            'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
@@ -337,13 +337,10 @@ class BlogController extends Controller
         $eleMax = Trace::where('gpx_id', $postgpx->id)->max('ele');
         Gpx::where('id', $postgpx->id)->update(['eleMax' => round($eleMax,0)]);
 
-
-
         return redirect()->route('blog.edit',[
             'postgpx' => $postgpx,
             'trace' => $trace,
             'tags' => Tag::select('id', 'name')->get(),
-            'cat_areas' => CatArea::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()

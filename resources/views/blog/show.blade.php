@@ -16,7 +16,7 @@
                           <img src="{{url('img/9121424.jpg')}}" width="100%" class="card-img-top" alt="...">
                       @endif
                       <div class='card-img-overlay'>               
-                          <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</div>        
+                          <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
                       </div>
                       <div class="card-body">
                           <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
@@ -80,16 +80,6 @@
     </div>
   </div>
 
-
-  
-  
-
-<!--   <div class="col-lg-12 col-md-12">
-    <div id="output"></div>
-  </div> -->
-
-  
-
 <script>
   var urlPixelkarteGrau = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg');
   var urlPixelkarteFarbe = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg');
@@ -124,27 +114,6 @@
   // create a red polyline from an array of LatLng points
   var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
   map.fitBounds(polyline.getBounds());
-
-  const apiUrl = "https://api3.geo.admin.ch/rest/services/api/MapServer/identify?geometryType=esriGeometryPoint&returnGeometry=false&sr=4326&geometry="+mapLon[1]+","+mapLat[1]+"&imageDisplay=0,0,0&mapExtent=0,0,0,0&tolerance=0&layers=all:ch.swisstopo-vd.geometa-gemeinde";
-  fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Display data in an HTML element
-    
-    for (var i = 0; i < 2; i++) {
-      var myObject = JSON.parse(JSON.stringify(data));
-      document.getElementById('output').innerHTML = JSON.stringify(myObject.results[i].attributes.kanton)+JSON.stringify(myObject.results[i].attributes.gemeindename);
-    } 
-    
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

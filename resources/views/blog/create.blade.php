@@ -120,19 +120,6 @@
                 <div class="row">
                     <div class="col-12 form-group">
                     <div class="form-group row mb-0">
-                    <label class="col-sm-3 col-form-label" for="title">Région</label>
-                    <div class="col-sm-9 input-group"><select name="cat_area_id" class="form-control" id="cat_area">
-                            @foreach ($cat_areas as $cat_area)
-                                <option @selected(old('cat_area_id', $postgpx->cat_area_id) == $cat_area->id) value="{{ $cat_area->id }}">{{ $cat_area->name }}</option>
-                            @endforeach
-                        </select></div>
-                        @error("cat_area_id")
-                            {{ $message }}
-                        @enderror
-                        </div>
-                    </div>
-                    <div class="col-12 form-group">
-                    <div class="form-group row mb-0">
                     <label class="col-sm-3 col-form-label" for="title">Tracé</label>
                     <div class="col-sm-9 input-group"><select name="cat_layout_id" class="form-control" id="cat_layout">
                             @foreach ($cat_layouts as $cat_layout)

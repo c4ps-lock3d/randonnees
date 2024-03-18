@@ -28,7 +28,6 @@ class FormPostRequest extends FormRequest
             //'slug' => ['required', 'min:8', 'regex:/^[0-9a-z\-]+$/', 'unique:posts'],
             'slug' => ['required', 'min:8', 'regex:/^[0-9a-z\-]+$/', Rule::unique('gpxes')->ignore($this->route()->parameter('postgpx'))],
             'date' => ['required'],
-            'cat_area_id' => ['required', 'exists:cat_areas,id'],
             'cat_layout_id' => ['required', 'exists:cat_layouts,id'],
             'tags' => ['array', 'exists:tags,id'],
             'cat_difficulty_id' => ['required', 'exists:cat_difficulties,id'],
@@ -40,7 +39,8 @@ class FormPostRequest extends FormRequest
             'eleStart' => ['numeric', 'min_digits:1', 'max_digits:4'],
             'eleMax' => ['numeric', 'min_digits:1', 'max_digits:4'],
             'duration' => ['required'],
-            'google' => ['nullable'],
+            'canton' => ['required'],
+            'commune' => ['required'],
             'hut' => ['nullable'],
             'comments' => ['nullable'],
             'image' => ['image', 'max:2000']

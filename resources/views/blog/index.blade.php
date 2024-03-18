@@ -31,23 +31,6 @@
                                 </ul>
                             </div>
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Région</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @foreach($cat_areas as $cat_area)
-                                    <a class="dropdown-item" href="#">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="{{$cat_area->name}}" type="checkbox" id="{{$cat_area->name}}" @if(request()->{$cat_area->name}) checked @endif>
-                                            <label style="width:100%" class="form-check-label" for="{{$cat_area->name}}">{{$cat_area->name}}</label>
-                                        </div>
-                                    </a>
-                                    @endforeach
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-check dropdown-item">
-                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficultée</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_difficulties as $cat_difficulty)
@@ -119,16 +102,6 @@
         </div>
         
         </div>
-        <!-- <div class="form-check form-check-inline">
-        <input class="form-check-input" type="submit" name="triDateDesc" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">Plus récent en premier</label>
-        </div>
-        <div class="form-check form-check-inline">
-        <input class="form-check-input" type="submit" name="triDateAsc" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">Plus ancien en premier</label>
-        </div>
-        <button class="btn btn-sm btn-dark" type="submit" name="submit"><i class="fas fa-sort"></i>&nbsp;&nbsp;Trier</button> -->
-
         <hr class="mb-3 mt-2">
 
     </form>
@@ -145,7 +118,7 @@
                         <img src="{{url('img/9121424.jpg')}}" width="400" height="200" class="card-img-top" alt="...">
                     @endif
                     <div class='card-img-overlay'>               
-                        <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->cat_area->name}}</div>        
+                        <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
                     </div>
                     <div class="card-body pb-1">
                         <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>

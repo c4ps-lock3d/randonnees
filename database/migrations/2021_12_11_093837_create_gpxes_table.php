@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer('eleMax');
             $table->time('duration');
             $table->string('gpxpath')->nullable();
-            $table->string('google')->nullable();
+            $table->string('canton')->nullable();
+            $table->string('commune')->nullable();
             $table->string('hut')->nullable();
             $table->longtext('comments')->nullable();
             $table->timestamps();
