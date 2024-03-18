@@ -15,10 +15,6 @@
                     <canvas id="myChartArea"></canvas>
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <div>
-                    <canvas id="myChartArea"></canvas>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script type="text/javascript">
                     var varChartCatArea = <?php echo json_encode($list_areas, JSON_HEX_TAG); ?>;
                     var varChartCatAreaCount = <?php echo json_encode($count_list_areas, JSON_HEX_TAG); ?>;
@@ -81,11 +77,6 @@
                 <div>
                     <canvas id="myChartDifficulty"></canvas>
                 </div>
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <div>
-                    <canvas id="myChartDifficulty"></canvas>
-                </div>
-
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script type="text/javascript">
 
