@@ -11,9 +11,9 @@
   <div class="col-xxl-4 col-md-12 mt-4">
                 <div class="card h-100 text-light bg-dark shadow-lg">
                       @if($postgpx->image)
-                          <img src="../storage/{{ $postgpx->image }}" width="100%" class="card-img-top" alt="...">
+                          <img src="../storage/{{ $postgpx->image }}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
                       @else
-                          <img src="{{url('img/9121424.jpg')}}" width="100%" class="card-img-top" alt="...">
+                          <img src="{{url('img/9121424.jpg')}}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
                       @endif
                       <div class='card-img-overlay'>               
                           <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
