@@ -155,7 +155,7 @@
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Distance totale parcourue</p>
                         </div>
-                        <div style="text-align:center;padding:0.66rem" class="card-body">
+                        <div style="text-align:center;padding:0.79rem" class="card-body">
                             <p style="font-size:28px" class="card-text">{{round($sum_distance,0)}} km</p>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Durée totale parcourue</p>
                         </div>
-                        <div style="text-align:center;padding:0.68rem"" class="card-body">
+                        <div style="text-align:center;padding:0.79rem"" class="card-body">
                             <p style="font-size:28px" class="card-text">{{round($sum_duration/3600),0}} heures</p>
                         </div>
                     </div>
