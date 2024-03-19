@@ -189,7 +189,7 @@
                     <img src="{{url('img/9121424.webp')}}" height="200" class="card-img-top" alt="..." style="object-fit:cover">
                 @endif
                 <div class='card-img-overlay'>               
-                    <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+                    <div class='bg-dark' style='font-size:14px' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
                 </div>
                 <div class="card-body pb-1">
                     <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>

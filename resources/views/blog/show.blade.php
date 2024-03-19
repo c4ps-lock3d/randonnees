@@ -16,7 +16,7 @@
                           <img src="{{url('img/9121424.webp')}}" height="250" class="card-img-top" alt="..." style="object-fit:cover">
                       @endif
                       <div class='card-img-overlay'>               
-                          <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+                          <div class='bg-dark' style='font-size:14px' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
                       </div>
                       <div class="card-body">
                           <h4 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h4>
@@ -99,7 +99,7 @@
   </div>
   <div class="col-xxl-8 col-lg-8 col-md-12 mt-4">
     <div class="card h-100 text-light bg-dark shadow-lg">
-      <div class="card-img-top" id="map" style="height:650px"></div>
+      <div class="card-img-top" id="map" style="height:610px"></div>
         <div class="card-footer">
           <div class="d-flex justify-content-end">
             <button class="btn btn-sm btn-secondary" type="submit" style="height:2.4em;font-size:11px"><i class="fas fa-download"></i>&nbsp;&nbsp;Télécharger GPX</button>
