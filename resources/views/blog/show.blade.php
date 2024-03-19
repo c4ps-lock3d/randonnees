@@ -13,7 +13,7 @@
                       @if($postgpx->image)
                           <img src="../storage/{{ $postgpx->image }}" height="200" class="card-img-top" alt="..." style="object-fit:cover">
                       @else
-                          <img src="{{url('img/9121424.jpg')}}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
+                          <img src="{{url('img/9121424.webp')}}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
                       @endif
                       <div class='card-img-overlay'>               
                           <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
