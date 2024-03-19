@@ -19,27 +19,44 @@
                           <div class='bg-dark' style='font-size:14px' id='newsDate'>{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
                       </div>
                       <div class="card-body">
-                          <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
-                          <div class="row">
-                              <div class="col-6">
+                          <h4 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h4>
+                          <div class="row pt-4">
+                              <div class="col-4">
                                   <p class="card-text">
-                                      <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                  </p>
-                                  <p class="card-text">
-                                      <i class="fas fa-caret-up"></i>&nbsp;&nbsp;{{$postgpx->eleAsc}} m
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km
                                   </p>
                               </div>
-                              <div class="col-6 pb-3">
+                              <div class="col-5">
                                   <p class="card-text">
-                                      <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km/effort
                                   </p>
+                              </div>
+                              <div class="col-3">
                                   <p class="card-text">
-                                      <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
                                   </p>
+                                  </div>
+                              </div>
+                            <div class="row pt-3">
+                            <div class="col-4">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+                                  </p>
+                              </div>
+                              <div class="col-5">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                  </p>
+                                </div>
+                                <div class="col-3">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-collapse-up"></span>&nbsp;&nbsp;{{$postgpx->eleMax}} m
+                                  </p>
+                         
                               </div>
                           </div>
-                          <canvas id="myChart"></canvas>
-                      </div>
+                          <canvas class="pt-3" id="myChart"></canvas>
+                        </div>
                       <div class="card-footer">
                           <div class="d-flex justify-content-between">
                               <div>
@@ -50,20 +67,29 @@
                                   @endif
                               </div>
                               <div>
+                                 @if($postgpx->cat_layout_id == 1)
+                                    <span style="border-left: 1px solid #24313C;border-right: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:12px;padding-left:12px" class="mdi mdi-refresh"></span>
+                                  @endif
+                                  @if($postgpx->cat_layout_id == 2)
+                                    <span style="border-left: 1px solid #24313C;border-right: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:12px;padding-left:12px" class="mdi mdi-arrow-left-right"></span>
+                                  @endif
+                                  @if($postgpx->cat_layout_id == 3)
+                                    <span style="border-left: 1px solid #24313C;border-right: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:12px;padding-left:12px" class="mdi mdi-arrow-right"></span>
+                                  @endif
                                   @if($postgpx->cat_difficulty_id == 1)
-                                      <span><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                      <span style="padding-left:10px"><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
                                   @endif
                                   @if($postgpx->cat_difficulty_id == 2)
-                                      <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                      <span style="padding-left:10px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
                                   @endif
                                   @if($postgpx->cat_difficulty_id == 3)
-                                      <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                      <span style="padding-left:10px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
                                   @endif
                                   @if($postgpx->cat_difficulty_id == 4)
-                                      <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                      <span style="padding-left:10px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
                                   @endif
                                   @if($postgpx->cat_difficulty_id == 5)
-                                      <span><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                      <span style="padding-left:10px"><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
                                   @endif
                               </div>
                           </div>
@@ -76,7 +102,7 @@
       <div class="card-img-top" id="map" style="height:650px"></div>
         <div class="card-footer">
           <div class="d-flex justify-content-end">
-            <button type="submit"><i class="fas fa-download"></i>&nbsp;&nbsp;Télécharger GPX</button>
+            <button class="btn btn-sm btn-secondary" type="submit" style="height:2.4em;font-size:11px"><i class="fas fa-download"></i>&nbsp;&nbsp;Télécharger GPX</button>
           </div>
         </div>
     </div>  
