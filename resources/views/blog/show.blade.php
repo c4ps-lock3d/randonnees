@@ -11,7 +11,7 @@
   <div class="col-xxl-4 col-lg-4 col-md-12 mt-4">
                 <div class="card h-100 text-light bg-dark shadow-lg">
                       @if($postgpx->image)
-                          <img src="../storage/{{ $postgpx->image }}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
+                          <img src="../storage/{{ $postgpx->image }}" height="200" class="card-img-top" alt="..." style="object-fit:cover">
                       @else
                           <img src="{{url('img/9121424.jpg')}}"height="200" class="card-img-top" alt="..." style="object-fit:cover">
                       @endif
@@ -74,10 +74,12 @@
   <div class="col-xxl-8 col-lg-8 col-md-12 mt-4">
     <div class="card h-100 text-light bg-dark shadow-lg">
       <div class="card-img-top" id="map" style="height:650px"></div>
-      <div class="card-footer">
-        
-      </div>
-    </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-end">
+            <button type="submit"><i class="fas fa-download"></i>&nbsp;&nbsp;Télécharger GPX</button>
+          </div>
+        </div>
+    </div>  
   </div>
 
 <script>

@@ -346,4 +346,7 @@ class BlogController extends Controller
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
         ])->with('success', "Importation GPX effectuée. L'ajout de données additionelles est possible.");
     }
+    public function downloadgpx(){
+        return Storage::download('file.jpg');
+    }
 }
