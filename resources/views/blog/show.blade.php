@@ -102,7 +102,7 @@
       <div class="card-img-top" id="map" style="height:610px"></div>
         <div class="card-footer">
           <div class="d-flex justify-content-end">
-            <button class="btn btn-sm btn-secondary" type="submit" style="height:2.4em;font-size:11px"><i class="fas fa-download"></i>&nbsp;&nbsp;Télécharger GPX</button>
+            <!--<button class="btn btn-sm btn-secondary" type="submit" style="height:2.4em;font-size:11px"><i class="fas fa-download"></i>&nbsp;&nbsp;Télécharger GPX</button>-->
           </div>
         </div>
     </div>  
