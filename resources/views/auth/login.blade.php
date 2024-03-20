@@ -17,7 +17,7 @@
                                 {{ $message }}
                             @enderror
                         </div>
-                        <div class="form-group pb-2">
+                        <div class="form-group pb-4">
                             <label for="password">Mot de passe</label>
                             <input type="password" name="password" class="form-control" id="password">
                             @error("password")

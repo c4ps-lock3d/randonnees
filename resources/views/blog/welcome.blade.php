@@ -3,9 +3,16 @@
 @section('title', 'Bienvenue')
 
 @section('content')   
-    <h2><i>“Un voyage de mille lieues commence par un pas.”</i><b style="font-size:16px;margin-left:20px">Lao-Tseu</b></h2><hr>
-    <div class="row">
-        <div class="col-xxl-4 col-lg-4 col-md-6 pb-3">
+<div class="row">
+    <div class="col-1 pt-3">     
+        <img src="{{url('img/wallace.webp')}}" height="100" alt="..." style="object-fit:cover">
+    </div>
+    <div class="col-11 mt-auto">     
+        <h4 style="text-align:justify"><i>“Salut ! Je m'appelle Wallace. Ce que j'aime dans la vie c'est jouer au freezbee, la physique quantique et promener mes humains des heures durant en montagne, dans les plus belles régions de Suisse”</i></h4>
+    </div>
+</div><hr>     
+<div class="row">
+        <div class="col-xxl-4 col-lg-4 col-md-6 pb-4">
             <div class="card h-100 text-light bg-dark shadow-lg">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Randonnées par régions</p>
@@ -68,7 +75,7 @@
             </div>    
             </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 pb-3">
+        <div class="col-xl-4 col-lg-4 col-md-6 pb-4">
             <div class="card h-100 text-light bg-dark shadow-lg p-0">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Randonnées par échelle de difficutée</p>
@@ -176,20 +183,22 @@
         </div>
 
     </div>
-
-    <h1>Dernières randonnées</h1>
     <div class="row">
+    <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
         @foreach($last_posts as $postgpx)
-        <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
+        
             <div class="card h-100 text-light bg-dark shadow-lg">
+            <div style="text-align:center" class="card-header">
+                <p class="card-text">La plus récente</p>
+            </div>
             <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
             @if($postgpx->image)
-                <img src="storage/{{ $postgpx->image }}" height="200" class="card-img-top" alt="..." style="object-fit:cover">
+                <img src="storage/{{ $postgpx->image }}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
                 @else
-                    <img src="{{url('img/9121424.webp')}}" height="200" class="card-img-top" alt="..." style="object-fit:cover">
+                    <img src="{{url('img/9121424.webp')}}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
                 @endif
-                <div class='card-img-overlay'>               
-                    <div class='bg-dark' style='font-size:14px' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+                <div class='card-img-overlay'>
+                    <div class='bg-dark' style='font-size:14px;margin-top:25px;border-radius:0rem 0rem 0rem 0rem;' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
                 </div>
                 <div class="card-body pb-1">
                     <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
@@ -242,7 +251,212 @@
                     </div>
                 </a>
             </div>
-        </div>
+        
         @endforeach
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
+        @foreach($highest_distEff as $postgpx)
+            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div style="text-align:center" class="card-header">
+                <p class="card-text">La plus technique</p>
+            </div>
+            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
+            @if($postgpx->image)
+                <img src="storage/{{ $postgpx->image }}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
+                @else
+                    <img src="{{url('img/9121424.webp')}}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
+                @endif
+                <div class='card-img-overlay'>
+                    <div class='bg-dark' style='font-size:14px;margin-top:25px;border-radius:0rem 0rem 0rem 0rem;' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
+                    <div class="row">
+                    <div class="col-6 pb-4">
+                    <p class="card-text">
+                        <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;{{$postgpx->distance}} km
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-caret-up"></i>&nbsp;&nbsp;{{$postgpx->eleAsc}} m
+                    </p>
+                    </div>
+                    <div class="col-6 pb-4">
+                    <p class="card-text">
+                        <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                    </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                @if(!$postgpx->tags->isEmpty())
+                                    @foreach($postgpx->tags as $tag)
+                                        <span class="badge bg-secondary text-light">{{$tag->name}}</span>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div>
+                                @if($postgpx->cat_difficulty_id == 1)
+                                    <span><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 2)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 3)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 4)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 5)
+                                    <span><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
+        @foreach($highest_eleMax as $postgpx)
+            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div style="text-align:center" class="card-header">
+                <p class="card-text">La plus haute</p>
+            </div>
+            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
+            @if($postgpx->image)
+                <img src="storage/{{ $postgpx->image }}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
+                @else
+                    <img src="{{url('img/9121424.webp')}}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
+                @endif
+                <div class='card-img-overlay'>
+                    <div class='bg-dark' style='font-size:14px;margin-top:25px;border-radius:0rem 0rem 0rem 0rem;' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
+                    <div class="row">
+                    <div class="col-6 pb-4">
+                    <p class="card-text">
+                        <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;{{$postgpx->distance}} km
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-caret-up"></i>&nbsp;&nbsp;{{$postgpx->eleAsc}} m
+                    </p>
+                    </div>
+                    <div class="col-6 pb-4">
+                    <p class="card-text">
+                        <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                    </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                @if(!$postgpx->tags->isEmpty())
+                                    @foreach($postgpx->tags as $tag)
+                                        <span class="badge bg-secondary text-light">{{$tag->name}}</span>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div>
+                                @if($postgpx->cat_difficulty_id == 1)
+                                    <span><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 2)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 3)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 4)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 5)
+                                    <span><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
+        @foreach($most_legendary as $postgpx)
+            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div style="text-align:center" class="card-header">
+                <p class="card-text">La plus mythique</p>
+            </div>
+            <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
+            @if($postgpx->image)
+                <img src="storage/{{ $postgpx->image }}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
+                @else
+                    <img src="{{url('img/9121424.webp')}}" height="200" class="card-img-bottom" alt="..." style="object-fit:cover">
+                @endif
+                <div class='card-img-overlay'>
+                    <div class='bg-dark' style='font-size:14px;margin-top:25px;border-radius:0rem 0rem 0rem 0rem;' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
+                    <div class="row">
+                    <div class="col-6 pb-4">
+                    <p class="card-text">
+                        <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;{{$postgpx->distance}} km
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-caret-up"></i>&nbsp;&nbsp;{{$postgpx->eleAsc}} m
+                    </p>
+                    </div>
+                    <div class="col-6 pb-4">
+                    <p class="card-text">
+                        <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                    </p>
+                    <p class="card-text">
+                        <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                    </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                @if(!$postgpx->tags->isEmpty())
+                                    @foreach($postgpx->tags as $tag)
+                                        <span class="badge bg-secondary text-light">{{$tag->name}}</span>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div>
+                                @if($postgpx->cat_difficulty_id == 1)
+                                    <span><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 2)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 3)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 4)
+                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                                @if($postgpx->cat_difficulty_id == 5)
+                                    <span><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+        </div>
     <div>
 @endsection
