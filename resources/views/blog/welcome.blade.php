@@ -206,12 +206,7 @@
                     <div class="d-flex justify-content-between">
                                 <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                  </p>
-                              </div>
-                              <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km-effort
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                                   </p>
                               </div>
                               <div class="">
@@ -295,12 +290,7 @@
                     <div class="d-flex justify-content-between">
                                 <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                  </p>
-                              </div>
-                              <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km-effort
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                                   </p>
                               </div>
                               <div class="">
@@ -383,12 +373,7 @@
                     <div class="d-flex justify-content-between">
                                 <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                  </p>
-                              </div>
-                              <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km-effort
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                                   </p>
                               </div>
                               <div class="">
@@ -471,12 +456,7 @@
                     <div class="d-flex justify-content-between">
                                 <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                  </p>
-                              </div>
-                              <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km-effort
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                                   </p>
                               </div>
                               <div class="">

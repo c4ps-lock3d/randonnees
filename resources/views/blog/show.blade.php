@@ -21,14 +21,9 @@
                       <div class="card-body">
                           <h4 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h4>
                           <div class="row pt-4">
-                              <div class="col-4">
+                              <div class="col-9">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                  </p>
-                              </div>
-                              <div class="col-5">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km-effort
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                                   </p>
                               </div>
                               <div class="col-3">
