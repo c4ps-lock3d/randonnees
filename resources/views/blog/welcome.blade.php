@@ -393,13 +393,13 @@
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
                                   </p>
                                   </div>
                               </div>
                               </div>
                             <div class="row pt-3 pb-3">
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between" style="text-align:left">
                             <div class="">
                                   <p class="card-text">
                                     <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
@@ -412,7 +412,7 @@
                                 </div>
                                 <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-collapse-up"></span>&nbsp;{{$postgpx->eleMax}} m
+                                    <span class="mdi mdi-arrow-collapse-up"></span>&nbsp;&nbsp;{{$postgpx->eleMax}} m
                                   </p>
                               </div>
                               </div>
