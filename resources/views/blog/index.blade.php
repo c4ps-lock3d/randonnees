@@ -139,24 +139,39 @@
                     </div>
                     <div class="card-body pb-1">
                         <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">
-                                    <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;{{$postgpx->distance}} km
-                                </p>
-                                <p class="card-text">
-                                    <i class="fas fa-caret-up"></i>&nbsp;&nbsp;{{$postgpx->eleAsc}} m
-                                </p>
-                            </div>
-                            <div class="col-6 pb-3">
-                                <p class="card-text">
-                                    <i class="far fa-clock"></i>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
-                                </p>
-                                <p class="card-text">
-                                    <i class="fas fa-caret-down"></i>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
-                                </p>
-                            </div>
-                        </div>
+                        <div class="row pt-3">
+                    <div class="d-flex justify-content-between">
+                                <div class="">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
+                                  </p>
+                              </div>
+                              <div class="">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                  </p>
+                                  </div>
+                              </div>
+                              </div>
+                            <div class="row pt-3 pb-3">
+                            <div class="d-flex justify-content-between">
+                            <div class="">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+                                  </p>
+                              </div>
+                              <div class="">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                  </p>
+                                </div>
+                                <div class="">
+                                  <p class="card-text">
+                                    <span class="mdi mdi-arrow-collapse-up"></span>&nbsp;&nbsp;{{$postgpx->eleMax}} m
+                                  </p>
+                              </div>
+                              </div>
+                          </div>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-between">

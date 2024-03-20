@@ -4,10 +4,10 @@
 
 @section('content')   
 <div class="row">
-    <div class="col-1 pt-3">     
+    <div class="col-xxl-1 col-xl-1 col-lg-2 col-md-2 pt-3">     
         <img src="{{url('img/wallace.webp')}}" alt="..." style="width:90px;height:90px;border-radius:50% 50%;border:0.15em solid black">
     </div>
-    <div class="col-11 pt-3 my-auto">     
+    <div class="col-xxl-11 col-xl-11 col-lg-10 col-md-10 pt-3 my-auto">     
         <h4 style="text-align:justify"><i>“Salut ! Je m'appelle Wallace. Ce que j'aime dans la vie c'est jouer au freezbee, la physique quantique et promener mes humains des heures durant en montagne, dans les plus belles régions de Suisse”</i></h4>
     </div>
 </div><hr>     
