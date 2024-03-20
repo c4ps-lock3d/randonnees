@@ -103,28 +103,25 @@ class BlogController extends Controller
             });
         }
         if($request->has('Vaud')){
-            $query->Where('cat_area_id', 1);
+            $query->Where('canton', "Vaud");
         }
         if($request->has('Valais')){
-            $query->Where('cat_area_id', 2);
+            $query->Where('canton', "Valais");
         }
         if($request->has('Fribourg')){
-            $query->Where('cat_area_id', 3);
+            $query->Where('canton', "Fribourg");
         }
         if($request->has('Bern')){
-            $query->Where('cat_area_id', 4);
+            $query->Where('canton', "Bern");
         }
         if($request->has('Neuchâtel')){
-            $query->Where('cat_area_id', 5);
+            $query->Where('canton', "Neuchâtel");
         }
-        if($request->has('Grisons')){
-            $query->Where('cat_area_id', 6);
+        if($request->has('Graubünden')){
+            $query->Where('canton', "Graubünden");
         }
         if($request->has('Schwytz')){
-            $query->Where('cat_area_id', 7);
-        }
-        if($request->has('France')){
-            $query->Where('cat_area_id', 8);
+            $query->Where('canton', "Schwytz");
         }
         if($request->has('T1')){
             $query->Where('cat_difficulty_id', 1);
@@ -178,9 +175,12 @@ class BlogController extends Controller
             $query->orderBy('duration', 'desc');
         }
         $query->orderBy('date', 'desc');
+
+        $list_areas = Gpx::select('canton')->distinct()->get()->pluck('canton');
         return view('blog.index', [
             'gpxes' => $query->get(),
             'tags' => Tag::select('id', 'name')->get(),
+            'list_areas' => $list_areas,
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get(),
             'cat_layouts' => CatLayout::select('id', 'name')->get(),

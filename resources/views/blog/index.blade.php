@@ -31,6 +31,23 @@
                                 </ul>
                             </div>
                             <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Canton</button>
+                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    @foreach($list_areas as $list_area)
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="{{$list_area}}" type="checkbox" id="{{$list_area}}" @if(request()->{$list_area}) checked @endif>
+                                            <label style="width:100%" class="form-check-label" for="{{$list_area}}">{{$list_area}}</label>
+                                        </div>
+                                    </a>
+                                    @endforeach
+                                    <div class="dropdown-divider"></div>
+                                    <div class="form-check dropdown-item">
+                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficultée</button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($cat_difficulties as $cat_difficulty)

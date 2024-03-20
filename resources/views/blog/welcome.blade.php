@@ -5,9 +5,9 @@
 @section('content')   
 <div class="row">
     <div class="col-1 pt-3">     
-        <img src="{{url('img/wallace.webp')}}" height="100" alt="..." style="object-fit:cover">
+        <img src="{{url('img/wallace.webp')}}" alt="..." style="width:90px;height:90px;border-radius:50% 50%;border:0.15em solid black">
     </div>
-    <div class="col-11 mt-auto">     
+    <div class="col-11 pt-3 my-auto">     
         <h4 style="text-align:justify"><i>“Salut ! Je m'appelle Wallace. Ce que j'aime dans la vie c'est jouer au freezbee, la physique quantique et promener mes humains des heures durant en montagne, dans les plus belles régions de Suisse”</i></h4>
     </div>
 </div><hr>     
@@ -258,7 +258,7 @@
         @foreach($highest_distEff as $postgpx)
             <div class="card h-100 text-light bg-dark shadow-lg">
             <div style="text-align:center" class="card-header">
-                <p class="card-text">La plus technique</p>
+                <p class="card-text">La plus physique</p>
             </div>
             <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
             @if($postgpx->image)
