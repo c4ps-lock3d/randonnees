@@ -28,7 +28,7 @@
                               </div>
                               <div class="col-5">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km/effort
+                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distEff}} km-effort
                                   </p>
                               </div>
                               <div class="col-3">
