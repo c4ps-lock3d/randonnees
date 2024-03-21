@@ -47,9 +47,9 @@
           <a class="dropdown-item" href="{{ route('blog.corse2023') }}">Corse 2023</a>
         </ul>
       </li>
-      <li class="nav-item">
+<!--       <li class="nav-item">
         <a @class(['nav-link', 'active' => request()->route()->getName() == 'blog.about']) href="{{ route('blog.about') }}">A propos <span class="sr-only"></span></a>
-      </li>
+      </li> -->
     </ul>
     <ul class="navbar-nav ms-auto">
       @auth
