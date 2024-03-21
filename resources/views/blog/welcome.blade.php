@@ -206,7 +206,16 @@
                     <div class="d-flex justify-content-between">
                                 <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
+                                    @if($postgpx->cat_layout_id == 1)
+                                    <span class="mdi mdi-refresh"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 2)
+                                    <span class="mdi mdi-arrow-left-right"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 3)
+                                    <span class="mdi mdi-arrow-right"></span>
+                                    @endif
+                                    &nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                                   </p>
                               </div>
                               <div class="">
