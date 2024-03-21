@@ -120,8 +120,8 @@ class BlogController extends Controller
         if($request->has('Graubünden')){
             $query->Where('canton', "Graubünden");
         }
-        if($request->has('Schwytz')){
-            $query->Where('canton', "Schwytz");
+        if($request->has('Schwyz')){
+            $query->Where('canton', "Schwyz");
         }
         if($request->has('T1')){
             $query->Where('cat_difficulty_id', 1);
