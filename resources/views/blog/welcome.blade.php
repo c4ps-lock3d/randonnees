@@ -34,13 +34,13 @@
                                 label: 'Nombre de randonnées',
                                 data: varChartCatAreaCount,
                                 backgroundColor: [
-                                    'rgba(255, 99, 132, 0.7)',
-                                    'rgba(255, 159, 64, 0.7)',
-                                    'rgba(255, 205, 86, 0.7)',
-                                    'rgba(75, 192, 192, 0.7)',
-                                    'rgba(54, 162, 235, 0.7)',
-                                    'rgba(153, 102, 255, 0.7)',
-                                    'rgba(201, 203, 207, 0.7)'
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(255, 159, 64, 0.6)',
+                                    'rgba(255, 205, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)',
+                                    'rgba(201, 203, 207, 0.6)'
                                 ],
                                 hoverOffset: 4,
                                 borderWidth: 1,
