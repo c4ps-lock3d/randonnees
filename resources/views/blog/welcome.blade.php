@@ -34,13 +34,13 @@
                                 label: 'Nombre de randonnées',
                                 data: varChartCatAreaCount,
                                 backgroundColor: [
-                                    'rgba(255, 99, 132, 0.6)',
-                                    'rgba(255, 159, 64, 0.6)',
-                                    'rgba(255, 205, 86, 0.6)',
-                                    'rgba(75, 192, 192, 0.6)',
-                                    'rgba(54, 162, 235, 0.6)',
-                                    'rgba(153, 102, 255, 0.6)',
-                                    'rgba(201, 203, 207, 0.6)'
+                                    'rgba(255, 99, 132, 0.7)',
+                                    'rgba(255, 159, 64, 0.7)',
+                                    'rgba(255, 205, 86, 0.7)',
+                                    'rgba(75, 192, 192, 0.7)',
+                                    'rgba(54, 162, 235, 0.7)',
+                                    'rgba(153, 102, 255, 0.7)',
+                                    'rgba(201, 203, 207, 0.7)'
                                 ],
                                 hoverOffset: 4,
                                 borderWidth: 1,
@@ -98,11 +98,11 @@
                                 label: 'Nombre de randonnées',
                                 data: varChartCatDifficultyCount,
                                 backgroundColor: [
-                                    'rgba(54, 162, 235, 0.8)',
-                                    'rgba(75, 192, 192, 0.8)',
-                                    'rgba(255, 205, 86, 0.8)',
-                                    'rgba(255, 159, 64, 0.8)',
-                                    'rgba(255, 99, 132, 0.8)',
+                                    'rgba(54, 162, 235, 0.7)',
+                                    'rgba(75, 192, 192, 0.7)',
+                                    'rgba(255, 205, 86, 0.7)',
+                                    'rgba(255, 159, 64, 0.7)',
+                                    'rgba(255, 99, 132, 0.7)',
                                 ],
                                 hoverOffset: 4,
                                 borderWidth: 1,
@@ -304,9 +304,17 @@
                     <div class="row pt-3">
                     <div class="d-flex justify-content-between">
                                 <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
-                                  </p>
+                                <p class="card-text">
+                                    @if($postgpx->cat_layout_id == 1)
+                                    <span class="mdi mdi-refresh"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 2)
+                                    <span class="mdi mdi-arrow-left-right"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 3)
+                                    <span class="mdi mdi-arrow-right"></span>
+                                    @endif
+                                    &nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                               </div>
                               <div class="">
                                   <p class="card-text">
@@ -393,9 +401,17 @@
                     <div class="row pt-3">
                     <div class="d-flex justify-content-between">
                                 <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
-                                  </p>
+                                <p class="card-text">
+                                    @if($postgpx->cat_layout_id == 1)
+                                    <span class="mdi mdi-refresh"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 2)
+                                    <span class="mdi mdi-arrow-left-right"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 3)
+                                    <span class="mdi mdi-arrow-right"></span>
+                                    @endif
+                                    &nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                               </div>
                               <div class="">
                                   <p class="card-text">
@@ -482,9 +498,17 @@
                     <div class="row pt-3">
                     <div class="d-flex justify-content-between">
                                 <div class="">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-right"></span>&nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
-                                  </p>
+                                <p class="card-text">
+                                    @if($postgpx->cat_layout_id == 1)
+                                    <span class="mdi mdi-refresh"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 2)
+                                    <span class="mdi mdi-arrow-left-right"></span>
+                                    @endif
+                                    @if($postgpx->cat_layout_id == 3)
+                                    <span class="mdi mdi-arrow-right"></span>
+                                    @endif
+                                    &nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
                               </div>
                               <div class="">
                                   <p class="card-text">
