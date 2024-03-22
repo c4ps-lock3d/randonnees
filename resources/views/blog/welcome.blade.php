@@ -248,6 +248,7 @@
                 <div class="card-footer">
                         <div class="d-flex justify-content-between">
                             <div>
+                                <span style="margin-right:8px" class="mdi mdi-tag"></span>
                                 @if(!$postgpx->tags->isEmpty())
                                     @foreach($postgpx->tags as $tag)
                                         <span class="badge bg-secondary text-light">{{$tag->name}}</span>
@@ -337,6 +338,7 @@
                 <div class="card-footer">
                         <div class="d-flex justify-content-between">
                             <div>
+                                <span style="margin-right:8px" class="mdi mdi-tag"></span>
                                 @if(!$postgpx->tags->isEmpty())
                                     @foreach($postgpx->tags as $tag)
                                         <span class="badge bg-secondary text-light">{{$tag->name}}</span>
@@ -425,6 +427,7 @@
                 <div class="card-footer">
                         <div class="d-flex justify-content-between">
                             <div>
+                                <span style="margin-right:8px" class="mdi mdi-tag"></span>
                                 @if(!$postgpx->tags->isEmpty())
                                     @foreach($postgpx->tags as $tag)
                                         <span class="badge bg-secondary text-light">{{$tag->name}}</span>
@@ -513,6 +516,7 @@
                 <div class="card-footer">
                         <div class="d-flex justify-content-between">
                             <div>
+                                <span style="margin-right:8px" class="mdi mdi-tag"></span>
                                 @if(!$postgpx->tags->isEmpty())
                                     @foreach($postgpx->tags as $tag)
                                         <span class="badge bg-secondary text-light">{{$tag->name}}</span>
