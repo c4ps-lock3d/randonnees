@@ -193,19 +193,24 @@
                             </div>
                             <div>
                                 @if($postgpx->cat_difficulty_id == 1)
-                                    <span><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+                                <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
                                 @endif
                                 @if($postgpx->cat_difficulty_id == 2)
-                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+                                <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
                                 @endif
                                 @if($postgpx->cat_difficulty_id == 3)
-                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+                                <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
                                 @endif
                                 @if($postgpx->cat_difficulty_id == 4)
-                                    <span><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+                                <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
                                 @endif
                                 @if($postgpx->cat_difficulty_id == 5)
-                                    <span><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;{{$postgpx->cat_difficulty->name}}</span>
+                                <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+                                <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
                                 @endif
                             </div>
                         </div>

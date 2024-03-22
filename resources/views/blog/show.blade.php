@@ -9,105 +9,104 @@
 @endauth
 <div class="row">
   <div class="col-xxl-4 col-lg-4 col-md-12 mt-4">
-                <div class="card h-100 text-light bg-dark shadow-lg">
-                      @if($postgpx->image)
-                          <img src="../storage/{{ $postgpx->image }}" height="250" class="card-img-top" alt="..." style="object-fit:cover">
-                      @else
-                          <img src="{{url('img/9121424.webp')}}" height="250" class="card-img-top" alt="..." style="object-fit:cover">
-                      @endif
-                      <div class='card-img-overlay'>               
-                          <div class='bg-dark' style='font-size:14px' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
-                      </div>
-                      <div class="card-body">
-                          <h4 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h4>
-                          <div class="row pt-4">
-                              <div class="col-9">
-                                  <p class="card-text">
-                                    @if($postgpx->cat_layout_id == 1)
-                                    <span class="mdi mdi-refresh"></span>
-                                    @endif
-                                    @if($postgpx->cat_layout_id == 2)
-                                    <span class="mdi mdi-arrow-left-right"></span>
-                                    @endif
-                                    @if($postgpx->cat_layout_id == 3)
-                                    <span class="mdi mdi-arrow-right"></span>
-                                    @endif
-                                    &nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
-                                  </p>
-                              </div>
-                              <div class="col-3">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
-                                  </p>
-                                  </div>
-                              </div>
-                            <div class="row pt-3">
-                            <div class="col-4">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
-                                  </p>
-                              </div>
-                              <div class="col-5">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
-                                  </p>
-                                </div>
-                                <div class="col-3">
-                                  <p class="card-text">
-                                    <span class="mdi mdi-arrow-collapse-up"></span>&nbsp;&nbsp;{{$postgpx->eleMax}} m
-                                  </p>
-                         
-                              </div>
-                          </div>
-                          <canvas class="pt-3" id="myChart"></canvas>
-                        </div>
-                      <div class="card-footer">
-                          <div class="d-flex justify-content-between">
-                              <div><span style="margin-right:8px" class="mdi mdi-tag"></span>
-                                  @if(!$postgpx->tags->isEmpty())
-                                      @foreach($postgpx->tags as $tag)
-                                          <span class="badge bg-secondary text-light">{{$tag->name}}</span>
-                                      @endforeach
-                                  @endif
-                              </div>
-                              <div>
-                                 @if($postgpx->cat_dogfriendly_id == 1)
-                                    <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:8px;padding-left:12px" class="mdi mdi-dog-side"></span>
-                                    <span style="margin-right:12px" class="badge bg-secondary text-light">{{$postgpx->cat_dogfriendly->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_dogfriendly_id == 2)
-                                    <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:8px;padding-left:12px" class="mdi mdi-dog-side"></span>
-                                    <span style="margin-right:12px" class="badge bg-secondary text-light">{{$postgpx->cat_dogfriendly->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_dogfriendly_id == 3)
-                                    <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:8px;padding-left:12px" class="mdi mdi-dog-side"></span>
-                                    <span style="margin-right:12px" class="badge bg-secondary text-light">{{$postgpx->cat_dogfriendly->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_difficulty_id == 1)
-                                      <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
-                                      <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_difficulty_id == 2)
-                                      <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
-                                      <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_difficulty_id == 3)
-                                      <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
-                                      <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_difficulty_id == 4)
-                                      <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
-                                      <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
-                                  @endif
-                                  @if($postgpx->cat_difficulty_id == 5)
-                                      <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
-                                      <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
-                                  @endif
-                              </div>
-                          </div>
-                      </div>
-                </div>
-
+    <div class="card h-100 text-light bg-dark shadow-lg">
+      @if($postgpx->image)
+        <img src="../storage/{{ $postgpx->image }}" height="250" class="card-img-top" alt="..." style="object-fit:cover">
+      @else
+        <img src="{{url('img/9121424.webp')}}" height="250" class="card-img-top" alt="..." style="object-fit:cover">
+      @endif
+      <div class='card-img-overlay'>               
+        <div class='bg-dark' style='font-size:14px' id='newsDate'>&nbsp;{{date("d.m.Y", strtotime($postgpx->date))}} - {{$postgpx->canton}}</div>        
+      </div>
+      <div class="card-body">
+        <h4 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h4>
+        <div class="row pt-4">
+          <div class="col-9">
+            <p class="card-text">
+              @if($postgpx->cat_layout_id == 1)
+                <span class="mdi mdi-refresh"></span>
+              @endif
+              @if($postgpx->cat_layout_id == 2)
+                <span class="mdi mdi-arrow-left-right"></span>
+              @endif
+              @if($postgpx->cat_layout_id == 3)
+                <span class="mdi mdi-arrow-right"></span>
+              @endif
+              &nbsp;&nbsp;{{$postgpx->distance}} km ({{$postgpx->distEff}} km-effort)
+            </p>
+          </div>
+          <div class="col-3">
+            <p class="card-text">
+              <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+            </p>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-4">
+            <p class="card-text">
+              <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+            </p>
+          </div>
+          <div class="col-5">
+            <p class="card-text">
+              <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+            </p>
+          </div>
+          <div class="col-3">
+            <p class="card-text">
+              <span class="mdi mdi-arrow-collapse-up"></span>&nbsp;&nbsp;{{$postgpx->eleMax}} m
+            </p>
+          </div>
+        </div>
+        <canvas class="pt-3" id="myChart"></canvas>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-between">
+          <div>
+            <span style="margin-right:8px" class="mdi mdi-tag"></span>
+            @if(!$postgpx->tags->isEmpty())
+              @foreach($postgpx->tags as $tag)
+                <span class="badge bg-secondary text-light">{{$tag->name}}</span>
+              @endforeach
+            @endif
+          </div>
+          <div>
+            @if($postgpx->cat_dogfriendly_id == 1)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:8px;padding-left:12px" class="mdi mdi-dog-side"></span>
+              <span style="margin-right:12px" class="badge bg-secondary text-light">{{$postgpx->cat_dogfriendly->name}}</span>
+            @endif
+            @if($postgpx->cat_dogfriendly_id == 2)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:8px;padding-left:12px" class="mdi mdi-dog-side"></span>
+              <span style="margin-right:12px" class="badge bg-secondary text-light">{{$postgpx->cat_dogfriendly->name}}</span>
+            @endif
+            @if($postgpx->cat_dogfriendly_id == 3)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-right:8px;padding-left:12px" class="mdi mdi-dog-side"></span>
+              <span style="margin-right:12px" class="badge bg-secondary text-light">{{$postgpx->cat_dogfriendly->name}}</span>
+            @endif
+            @if($postgpx->cat_difficulty_id == 1)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-wanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+              <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
+            @endif
+            @if($postgpx->cat_difficulty_id == 2)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+              <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
+            @endif
+            @if($postgpx->cat_difficulty_id == 3)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+              <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
+            @endif
+            @if($postgpx->cat_difficulty_id == 4)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-bergwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+              <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
+            @endif
+            @if($postgpx->cat_difficulty_id == 5)
+              <span style="border-left: 1px solid #24313C;padding-top:10px;padding-bottom:12px;padding-left:12px"><img src="{{url('img/icon-alpinwanderung.svg')}}" style="margin-bottom:3px" width="20px" height="20px">&nbsp;&nbsp;</span>
+              <span class="badge bg-secondary text-light">{{$postgpx->cat_difficulty->name}}</span>
+            @endif
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-xxl-8 col-lg-8 col-md-12 mt-4">
     <div class="card h-100 text-light bg-dark shadow-lg">
