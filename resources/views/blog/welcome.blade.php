@@ -220,7 +220,7 @@
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", ceil(strtotime($postgpx->duration)/300)*300)}}
                                   </p>
                                   </div>
                               </div>
@@ -318,7 +318,7 @@
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", ceil(strtotime($postgpx->duration)/300)*300)}}
                                   </p>
                                   </div>
                               </div>
@@ -415,7 +415,7 @@
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", ceil(strtotime($postgpx->duration)/300)*300)}}
                                   </p>
                                   </div>
                               </div>
@@ -512,7 +512,7 @@
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", ceil(strtotime($postgpx->duration)/300)*300)}}
                                   </p>
                                   </div>
                               </div>

@@ -6,106 +6,106 @@
 <div class="row">
     <div class="col-12 pt-4 pb-4">
         <div class="card h-100 text-light bg-dark">
-                <div class="card-header d-flex justify-content-between">
-                    <div>Filtres</div>
-                    <div>{{$count_posts}} de {{$count_total_posts}} affichées</div>
-                </div>             
-                <div class="card-body">
-                    <form class="" action="" method="get">
-                        <div class="row">
-                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Tag</button>
-                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @foreach($tags as $tag)
+            <div class="card-header d-flex justify-content-between">
+                <div>Filtres</div>
+                <div>{{$count_posts}} de {{$count_total_posts}} affichées</div>
+            </div>             
+            <div class="card-body">
+                <form class="" action="" method="get">
+                    <div class="row">
+                        <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Tag</button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach($tags as $tag)
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
                                             <input class="form-check-input" name="{{$tag->name}}" type="checkbox" id="{{$tag->name}}" @if(request()->{$tag->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$tag->name}}">{{$tag->name}}</label>
                                         </div>
                                     </a>
-                                    @endforeach
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-check dropdown-item">
-                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Canton</button>
-                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @foreach($list_areas as $list_area)
+                                @endforeach
+                                <div class="dropdown-divider"></div>
+                                <div class="form-check dropdown-item">
+                                    <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Canton</button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach($list_areas as $list_area)
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
                                             <input class="form-check-input" name="{{$list_area}}" type="checkbox" id="{{$list_area}}" @if(request()->{$list_area}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$list_area}}">{{$list_area}}</label>
                                         </div>
                                     </a>
-                                    @endforeach
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-check dropdown-item">
-                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficultée</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @foreach($cat_difficulties as $cat_difficulty)
+                                @endforeach
+                                <div class="dropdown-divider"></div>
+                                <div class="form-check dropdown-item">
+                                    <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficultée</button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach($cat_difficulties as $cat_difficulty)
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_difficulty->name}}" type="checkbox" id="{{$cat_difficulty->name}}" @if(request()->{$cat_difficulty->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_difficulty->name}}">{{$cat_difficulty->name}}</label>
                                         </div>
                                     </a>
-                                    @endforeach
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-check dropdown-item">
-                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
-                                    </div>
+                                @endforeach
+                                <div class="dropdown-divider"></div>
+                                <div class="form-check dropdown-item">
+                                    <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
                                 </div>
                             </div>
-                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficulté chien</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @foreach($cat_dogfriendlies as $cat_dogfriendly)
+                        </div>
+                        <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Difficulté chien</button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach($cat_dogfriendlies as $cat_dogfriendly)
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_dogfriendly->name}}" type="checkbox" id="{{$cat_dogfriendly->name}}" @if(request()->{$cat_dogfriendly->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_dogfriendly->name}}">{{$cat_dogfriendly->name}}</label>
                                         </div>
                                     </a>
-                                    @endforeach
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-check dropdown-item">
-                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
-                                    </div>
+                                @endforeach
+                                <div class="dropdown-divider"></div>
+                                <div class="form-check dropdown-item">
+                                    <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
                                 </div>
                             </div>
-                            <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Tracé</button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @foreach($cat_layouts as $cat_layout)
+                        </div>
+                        <div class="dropdown btn-group btn-group-sm col-sm pb-1" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">Tracé</button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                @foreach($cat_layouts as $cat_layout)
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
                                             <input class="form-check-input" name="{{$cat_layout->name}}" type="checkbox" id="{{$cat_layout->name}}" @if(request()->{$cat_layout->name}) checked @endif>
                                             <label style="width:100%" class="form-check-label" for="{{$cat_layout->name}}">{{$cat_layout->name}}</label>
                                         </div>
                                     </a>
-                                    @endforeach
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-check dropdown-item">
-                                        <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
-                                    </div>
+                                @endforeach
+                                <div class="dropdown-divider"></div>
+                                <div class="form-check dropdown-item">
+                                    <button style="font-weight: bold;background: none;color: black;border: none;font-size:17px;cursor: pointer;outline: inherit;" name="submit">  <i class="fas fa-search"></i>&nbsp;&nbsp;Rechercher</button>
                                 </div>
                             </div>
-                            <a class="btn-group btn-group-sm col-sm-2 pb-1" href="{{ route('blog.index') }}" style="text-decoration:none"><button class="btn btn-sm btn-secondary" type="button" name="submit"><i class="fas fa-eraser"></i>&nbsp;&nbsp;Réinitialiser</button></a>
                         </div>
-                        <!-- <input class="form-check-input" name="tagSommet" type="checkbox" id="tagSommet" value="tagSommet" onchange="document.getElementById('filter').submit()" @if(request()->tagSommet) checked @endif> -->                      
+                        <a class="btn-group btn-group-sm col-sm-2 pb-1" href="{{ route('blog.index') }}" style="text-decoration:none"><button class="btn btn-sm btn-secondary" type="button" name="submit"><i class="fas fa-eraser"></i>&nbsp;&nbsp;Réinitialiser</button></a>
                     </div>
+                    <!-- <input class="form-check-input" name="tagSommet" type="checkbox" id="tagSommet" value="tagSommet" onchange="document.getElementById('filter').submit()" @if(request()->tagSommet) checked @endif> -->                      
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
+    </div>
+    <div class="d-flex justify-content-between">
         <div class="dropdown">
             <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration:none">Trier par</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -117,13 +117,9 @@
                 <input type="submit" name="triDurationAsc" id="triDurationAsc" class="dropdown-item" href="#" value="Durée croissante"></input>
             </div>
         </div>
-        
-        </div>
-        <hr class="mb-3 mt-2">
-
+    </div>
+    <hr class="mb-3 mt-2">
     </form>
-    
-
     <div class="row">
         @foreach($gpxes as $postgpx)
         <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
@@ -140,7 +136,7 @@
                     <div class="card-body pb-1">
                         <h5 class="card-title text-truncate font-weight-bold">{{$postgpx->title}}</h5>
                         <div class="row pt-3">
-                    <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between">
                                 <div class="">
                                   <p class="card-text">
                                     @if($postgpx->cat_layout_id == 1)
@@ -157,7 +153,7 @@
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", strtotime($postgpx->duration))}}
+                                    <span class="mdi mdi-timer-outline"></span>&nbsp;&nbsp;{{date("H:i", ceil(strtotime($postgpx->duration)/300)*300)}}
                                   </p>
                                   </div>
                               </div>
