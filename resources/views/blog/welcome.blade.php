@@ -229,12 +229,12 @@
                             <div class="d-flex justify-content-between">
                             <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+                                    <span class="mdi mdi-arrow-top-right"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
                                   </p>
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                    <span class="mdi mdi-arrow-bottom-right"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
                                   </p>
                                 </div>
                                 <div class="">
@@ -327,12 +327,12 @@
                             <div class="d-flex justify-content-between">
                             <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+                                    <span class="mdi mdi-arrow-top-right"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
                                   </p>
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                    <span class="mdi mdi-arrow-bottom-right"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
                                   </p>
                                 </div>
                                 <div class="">
@@ -424,12 +424,12 @@
                             <div class="d-flex justify-content-between" style="text-align:left">
                             <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+                                    <span class="mdi mdi-arrow-top-right"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
                                   </p>
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                    <span class="mdi mdi-arrow-bottom-right"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
                                   </p>
                                 </div>
                                 <div class="">
@@ -521,12 +521,12 @@
                             <div class="d-flex justify-content-between">
                             <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+                                    <span class="mdi mdi-arrow-top-right"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
                                   </p>
                               </div>
                               <div class="">
                                   <p class="card-text">
-                                    <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+                                    <span class="mdi mdi-arrow-bottom-right"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
                                   </p>
                                 </div>
                                 <div class="">

@@ -44,12 +44,12 @@
         <div class="row pt-3">
           <div class="col-4">
             <p class="card-text">
-              <span class="mdi mdi-arrow-up"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
+              <span class="mdi mdi-arrow-top-right"></span>&nbsp;&nbsp;{{$postgpx->eleAsc}} m 
             </p>
           </div>
           <div class="col-5">
             <p class="card-text">
-              <span class="mdi mdi-arrow-down"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
+              <span class="mdi mdi-arrow-bottom-right"></span>&nbsp;&nbsp;{{$postgpx->eleDsc}} m
             </p>
           </div>
           <div class="col-3">
