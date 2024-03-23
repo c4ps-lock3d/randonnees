@@ -63,3 +63,14 @@ hr{
     padding:5px;
     --bs-bg-opacity: .3;
 }
+
+.box-shadow:hover
+{
+	-webkit-box-shadow: 0 20px 40px #516D8B;
+	box-shadow: 0 20px 40px #516D8B;
+	-webkit-transform: translateY(-1px);
+	-moz-transform: translateY(-1px);
+	-ms-transform: translateY(-1px);
+	-o-transform: translateY(-1px);
+	transform: translateY(-1px);
+}

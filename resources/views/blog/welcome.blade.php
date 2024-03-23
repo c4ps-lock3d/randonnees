@@ -13,7 +13,7 @@
 </div>
 <div class="row">
         <div class="col-xxl-4 col-lg-4 col-md-6 pb-4">
-            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div class="card h-100 text-light bg-dark">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Randonnées par régions</p>
                 </div>
@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-6 pb-4">
-            <div class="card h-100 text-light bg-dark shadow-lg p-0">
+            <div class="card h-100 text-light bg-dark p-0">
                 <div style="text-align:center" class="card-header">
                     <p class="card-text">Randonnées par échelle de difficutée</p>
                 </div>
@@ -146,7 +146,7 @@
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 pb-4">
-                    <div class="card text-light bg-dark shadow-lg">
+                    <div class="card text-light bg-dark">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Nombre de randonnées enregistrées</p>
                         </div>
@@ -158,7 +158,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 pb-4">
-                    <div class="card text-light bg-dark shadow-lg">
+                    <div class="card text-light bg-dark">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Distance totale parcourue</p>
                         </div>
@@ -170,7 +170,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 pb-4">
-                    <div class="card text-light bg-dark shadow-lg">
+                    <div class="card text-light bg-dark">
                         <div style="text-align:center" class="card-header">
                             <p class="card-text">Durée totale parcourue</p>
                         </div>
@@ -187,7 +187,7 @@
     <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
         @foreach($last_posts as $postgpx)
         
-            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div class="card h-100 text-light bg-dark box-shadow">
             <div style="text-align:center" class="card-header">
                 <p class="card-text">La plus récente</p>
             </div>
@@ -286,7 +286,7 @@
         </div>
         <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
         @foreach($highest_distEff as $postgpx)
-            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div class="card h-100 text-light bg-dark box-shadow">
             <div style="text-align:center" class="card-header">
                 <p class="card-text">La plus physique</p>
             </div>
@@ -383,7 +383,7 @@
         </div>
         <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
         @foreach($highest_eleMax as $postgpx)
-            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div class="card h-100 text-light bg-dark box-shadow">
             <div style="text-align:center" class="card-header">
                 <p class="card-text">La plus haute</p>
             </div>
@@ -480,7 +480,7 @@
         </div>
         <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
         @foreach($most_legendary as $postgpx)
-            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div class="card h-100 text-light bg-dark box-shadow">
             <div style="text-align:center" class="card-header">
                 <p class="card-text">La plus mythique</p>
             </div>

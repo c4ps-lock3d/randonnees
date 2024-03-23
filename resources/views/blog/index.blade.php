@@ -109,12 +109,12 @@
         <div class="dropdown">
             <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration:none">Trier par</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <input type="submit" name="triDateDesc" id="triDateDesc" class="dropdown-item" href="#" value="Date décroissante"></input>
-                <input type="submit" name="triDateAsc" id="triDateAsc" class="dropdown-item" href="#" value="Date croissante"></input>
-                <input type="submit" name="triDistEffDesc" id="triDistEffDesc" class="dropdown-item" href="#" value="Difficultée décroissante"></input>
-                <input type="submit" name="triDistEffAsc" id="triDistEffAsc" class="dropdown-item" href="#" value="Difficultée croissante"></input>
-                <input type="submit" name="triDurationDesc" id="triDurationDesc" class="dropdown-item" href="#" value="Durée décroissante"></input>
-                <input type="submit" name="triDurationAsc" id="triDurationAsc" class="dropdown-item" href="#" value="Durée croissante"></input>
+                <input type="submit" name="triDateDesc" id="triDateDesc" class="dropdown-item" href="#" value="Plus récent en premier"></input>
+                <input type="submit" name="triDateAsc" id="triDateAsc" class="dropdown-item" href="#" value="Plus ancien en premier"></input>
+                <input type="submit" name="triDistEffDesc" id="triDistEffDesc" class="dropdown-item" href="#" value="Plus difficile en premier"></input>
+                <input type="submit" name="triDistEffAsc" id="triDistEffAsc" class="dropdown-item" href="#" value="Plus facile en premier"></input>
+                <input type="submit" name="triDurationDesc" id="triDurationDesc" class="dropdown-item" href="#" value="Plus long en premier"></input>
+                <input type="submit" name="triDurationAsc" id="triDurationAsc" class="dropdown-item" href="#" value="Plus court en premier"></input>
             </div>
         </div>
     </div>
@@ -123,7 +123,7 @@
     <div class="row">
         @foreach($gpxes as $postgpx)
         <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
-            <div class="card h-100 text-light bg-dark shadow-lg">
+            <div class="card h-100 text-light bg-dark box-shadow">
                 <a class="stretched-link" style="text-decoration: none" href="{{ route('blog.show', ['slug' => $postgpx->slug, 'postgpx' => $postgpx->id]) }}">
                     @if($postgpx->image)
                         <img src="storage/{{ $postgpx->image }}" height="200" class="card-img-top" alt="..." style="object-fit:cover">
