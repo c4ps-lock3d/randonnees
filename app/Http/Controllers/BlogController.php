@@ -211,7 +211,7 @@ class BlogController extends Controller
         if($postgpx->slug != $slug){
             return to_route('blog.show', ['slug' => $postgpx->slug, 'id' => $postgpx->id]);
         }
-        return Storage::download($postgpx->gpxpath,$postgpx->slug.".gpx");
+        return Storage::download($postgpx->gpxpath,$postgpx->title.".gpx");
     }
      
     // Créer
