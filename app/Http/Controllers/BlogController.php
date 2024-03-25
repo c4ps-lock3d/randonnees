@@ -206,7 +206,11 @@ class BlogController extends Controller
             'mapLon' => $dataLon,
         ]);
     }
-    
+
+    public function download(){
+        return Storage::download(storage_path('/imgrando/3Sk5DBJasi6LZ14qsIJ1ycepwREgOdl4crYPKZVQ.webp'));
+    }
+     
     // Créer
     public function create(){
         $postgpx = new Gpx();
@@ -348,8 +352,5 @@ class BlogController extends Controller
             'cat_difficulties' => CatDifficulty::select('id', 'name')->get(),
             'cat_dogfriendlies' => CatDogfriendly::select('id', 'name')->get()
         ])->with('success', "Importation GPX effectuée. L'ajout de données additionelles est possible.");
-    }
-    public function downloadgpx(){
-        return Storage::download('file.jpg');
     }
 }

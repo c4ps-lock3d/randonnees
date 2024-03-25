@@ -28,6 +28,12 @@ Route::get('/randonnees/{slug}-{postgpx}', [\App\Http\Controllers\BlogController
     'slug'=>'[a-z0-9\-]+'
 ])->name('blog.show');
 
+// Telecharger
+Route::get('/download/{slug}-{postgpx}', [\App\Http\Controllers\BlogController::class, 'download'])->where([
+    'postgpx'=>'[0-9]+',
+    'slug'=>'[a-z0-9\-]+'
+])->name('blog.download');
+
 // Créer (sans GPX)
 Route::get('/randonnees/new', [\App\Http\Controllers\BlogController::class, 'create'])->name('blog.create')->middleware('auth');
 Route::post('/randonnees/new', [\App\Http\Controllers\BlogController::class, 'store']);
