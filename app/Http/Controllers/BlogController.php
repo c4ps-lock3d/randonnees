@@ -207,8 +207,11 @@ class BlogController extends Controller
         ]);
     }
 
-    public function download(){
-        return Storage::download(storage_path('/imgrando/3Sk5DBJasi6LZ14qsIJ1ycepwREgOdl4crYPKZVQ.webp'));
+    public function download(string $slug, Gpx $postgpx){
+        if($postgpx->slug != $slug){
+            return to_route('blog.show', ['slug' => $postgpx->slug, 'id' => $postgpx->id]);
+        }
+        return Storage::download($postgpx->gpxpath,$postgpx->slug.".gpx");
     }
      
     // Créer
