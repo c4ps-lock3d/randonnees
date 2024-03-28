@@ -275,8 +275,11 @@
   var gpxes = <?php echo json_encode($gpxes, JSON_HEX_TAG); ?>;
 
   gpxes.forEach(element => {
-    var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map).bindPopup('<a style="color:#000" href=https://randos.top/randonnees/'+element.slug+'-'+element.id+'>'+element.title+'</a>');
-
+    var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map);
+    marker.bindPopup('<a style="color:#000" href=https://randos.top/randonnees/'+element.slug+'-'+element.id+'>'+element.title+'</a>');
+    marker.on('mouseover',function(ev) {
+  marker.openPopup();
+});
     //var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map).bindPopup('<a style="color:#000" href=https://randos.top/randonnees/'+element.slug+'-'+element.id+'>'+element.title+'</a>');
 
   });
