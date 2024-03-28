@@ -241,7 +241,7 @@
         //shadowSize:   [50, 64], // size of the shadow
         iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
         //shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
     });
   const mapDiv = document.getElementById("map");
 
@@ -275,9 +275,14 @@
   var gpxes = <?php echo json_encode($gpxes, JSON_HEX_TAG); ?>;
 
   gpxes.forEach(element => {
-    var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map);
+    var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map).bindPopup('<a style="color:#000" href=https://randos.top/randonnees/'+element.slug+'-'+element.id+'>'+element.title+'</a>');
+
+    //var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map).bindPopup('<a style="color:#000" href=https://randos.top/randonnees/'+element.slug+'-'+element.id+'>'+element.title+'</a>');
+
   });
 
+  
+  
   map.setMaxBounds(map.getBounds());
 
   const resizeObserver = new ResizeObserver(() => {map.invalidateSize();});
