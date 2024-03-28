@@ -117,9 +117,21 @@
                 <input type="submit" name="triDurationAsc" id="triDurationAsc" class="dropdown-item" href="#" value="Plus court en premier"></input>
             </div>
         </div>
+        <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;" class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <span class="mdi mdi-map"></span>&nbsp;&nbsp;Masquer/afficher la carte
+        </button>
     </div>
     <hr class="mb-3 mt-2">
     </form>
+
+<div class="collapse show" id="collapseExample">
+  <div class="col-xxl-12 col-lg-12 col-md-12 pb-4">
+    <div class="card h-100 text-light bg-dark shadow-lg">
+      <div class="card-img-top card-img-bottom" id="map"></div>
+    </div>  
+  </div>
+</div>
+
     <div class="row">
         @foreach($gpxes as $postgpx)
         <div class="col-xxl-3 col-lg-4 col-md-6 pb-4">
@@ -217,4 +229,46 @@
         </div>
         @endforeach
     <div>
+    
+    <script>
+    var pinIcon = L.icon({
+        iconUrl: 'img/leafset-pin.png',
+        //shadowUrl: 'leaf-shadow.png',
+
+        iconSize:     [40, 40], // size of the icon
+        //shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+        //shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+  const mapDiv = document.getElementById("map");
+  var urlPixelkarteGrau = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg');
+  var urlPixelkarteFarbe = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg');
+  var urlSwissimage = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg');
+  var map = new L.Map('map', {
+    crs: L.CRS.EPSG3857,
+    continuousWorld: true,
+    worldCopyJump: false,
+    attributionControl: false,
+    layers: [urlPixelkarteFarbe]
+  });
+  var baseMaps = {
+    "Satelite": urlSwissimage,
+    "Carte nationale (couleur)": urlPixelkarteFarbe,
+    "Carte nationale (gris)": urlPixelkarteGrau,
+  };
+  var layerControl = L.control.layers(baseMaps).addTo(map);
+  L.control.scale({
+    imperial: false,
+  }).addTo(map);
+  map.setView(L.latLng(46.800663464, 8.222665776),  8);
+  var gpxes = <?php echo json_encode($gpxes, JSON_HEX_TAG); ?>;
+
+  gpxes.forEach(element => {
+    var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map);
+  });
+
+  const resizeObserver = new ResizeObserver(() => {map.invalidateSize();});
+  resizeObserver.observe(mapDiv);
+</script>
 @endsection
