@@ -242,6 +242,7 @@
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
   const mapDiv = document.getElementById("map");
+
   var urlPixelkarteGrau = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg');
   var urlPixelkarteFarbe = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg');
   var urlSwissimage = L.tileLayer('https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg');
@@ -250,8 +251,11 @@
     continuousWorld: true,
     worldCopyJump: false,
     attributionControl: false,
-    layers: [urlPixelkarteFarbe]
+    layers: [urlPixelkarteGrau],
+    minZoom: 8,
+    zoomControl: false
   });
+  
   var baseMaps = {
     "Satelite": urlSwissimage,
     "Carte nationale (couleur)": urlPixelkarteFarbe,
@@ -261,13 +265,17 @@
   L.control.scale({
     imperial: false,
   }).addTo(map);
+  L.control.zoom({
+    position: 'bottomright'
+}).addTo(map);
+  
   map.setView(L.latLng(46.800663464, 8.222665776),  8);
   var gpxes = <?php echo json_encode($gpxes, JSON_HEX_TAG); ?>;
 
   gpxes.forEach(element => {
     var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map);
   });
-
+  map.setMaxBounds(map.getBounds());
   const resizeObserver = new ResizeObserver(() => {map.invalidateSize();});
   resizeObserver.observe(mapDiv);
 </script>
