@@ -118,11 +118,13 @@
             </div>
         </div>
         <button style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;" class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <span class="mdi mdi-map"></span>&nbsp;&nbsp;Masquer/afficher la carte
+            <span class="if-collapsed mdi mdi-map">&nbsp;&nbsp;Afficher la carte</span>
+            <span class="if-not-collapsed mdi mdi-map">&nbsp;&nbsp;Masquer la carte</span>
         </button>
     </div>
     <hr class="mb-3 mt-2">
     </form>
+
 
 <div class="collapse show" id="collapseExample">
   <div class="col-xxl-12 col-lg-12 col-md-12 pb-4">
@@ -229,7 +231,7 @@
         </div>
         @endforeach
     <div>
-    
+
     <script>
     var pinIcon = L.icon({
         iconUrl: 'img/leafset-pin.png',
@@ -275,7 +277,9 @@
   gpxes.forEach(element => {
     var marker = L.marker([element.latstart, element.lonstart],{icon: pinIcon}).addTo(map);
   });
+
   map.setMaxBounds(map.getBounds());
+
   const resizeObserver = new ResizeObserver(() => {map.invalidateSize();});
   resizeObserver.observe(mapDiv);
 </script>
